@@ -11,7 +11,7 @@
 #### Customers will be able to select cities they would like to travel to and learn a plethora of information. What restaurants are good. Best attractions. Cheapest flights. Hometown music.
 
 # Motivation
-#### We are excited to not only improve our coding / web / app-building skills, but also to get our of quarantine and lockdown and enable people to see the world again!
+#### We are excited to not only improve our coding / web / app-building skills, but also to get out of quarantine and lockdown and enable people to see the world again!
 
 # Risks
 #### Getting all of the appropriate data collected. Knowledge gaps may exist within the team in terms of the languages the project will be coded in, databases, and web scraping. 
