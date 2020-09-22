@@ -1,5 +1,5 @@
 # Project Title
-#### Travel-Recommender
+## Travel-Recommender
 
 # Team Members' names
 #### Bryan Arment
