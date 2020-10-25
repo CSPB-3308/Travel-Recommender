@@ -21,3 +21,17 @@ from hello.models import Destination, Lodging
 >>> Lodging.objects.get(id=2).destinationID
 <Destination: Miami>
 >>> exit()
+
+
+*** if any changes are made to the models.py these commands must be run in the Travel_Recommender folder:
+	python manage.py makemigrations
+        python manage.py migrate
+
+*** you can check the website locally by doing this:
+	python manage.py runserver 
+
+*** any models that are created in models.py should be imported into views.py
+
+*** creating data for the models can be seen above... you need to run these commands
+        pythong manage.py shell
+        >> from hello.models import (models you want to import)
