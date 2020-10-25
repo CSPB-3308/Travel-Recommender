@@ -1,0 +1,23 @@
+from hello.models import Destination, Lodging
+>>> sf.save()
+>>> nyc.save()
+>>> mia.save()
+>>> Destination.objects.get(id=1)
+<Destination: San Francisco>
+>>> Destination.objects.get(id=3)
+<Destination: Miami>
+>>> Destination.objects.get(id=2)
+<Destination: New York City>
+>>> sf_hotel = Lodging(name="Hotel de San Fran",destinationID=sf,address="123 Fake St",star_rating=4.12,description="a placde to stay in SF")
+>>> sf_hotel.save()
+>>> Lodging.objects.first()
+<Lodging: Hotel de San Fran>
+>>> Lodging.objects.first().destinationID
+<Destination: San Francisco>
+>>> mia_hotel = Lodging(name="Hotel de Miami",destinationID=mia,address="555 Fake St",star_rating=3.45,description="a placde to stay in Miami")
+>>> mia_hotel.save()
+>>> Lodging.objects.get(id=2)
+<Lodging: Hotel de Miami>
+>>> Lodging.objects.get(id=2).destinationID
+<Destination: Miami>
+>>> exit()
