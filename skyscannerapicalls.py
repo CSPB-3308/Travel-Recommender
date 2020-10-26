@@ -6,6 +6,7 @@ import sqlite3
 # TO DO: figure out how to read data from HTML page; implement error checking for data
 # current error: flight time is not pulled in API call (all flights leave at 00:00:00)
 
+
 def callFlightApi(country, currency, locale, originplace, destinationplace, outbounddate):
     url = "https://rapidapi.p.rapidapi.com/apiservices/browsedates/v1.0/"+str(country)+"/"+str(currency)+"/"+str(locale)+"/"+str(originplace)+"/"+str(destinationplace)+"/"+str(outbounddate)
 
@@ -16,21 +17,23 @@ def callFlightApi(country, currency, locale, originplace, destinationplace, outb
 
     response = requests.request("GET", url, headers=headers)
 
-    if (response.status_code == 200):
+    if response.status_code == 200:
         parse = response.json()
         parsed_responses = parseResponse(parse)
         return parsed_responses
     else:
         return "Error Flight Data Could Not Be Collected!"
 
+
 def parseResponse(parse):
     quotes = parse['Quotes']
     outbound_flight = []
+    flight_info = []
     for i in quotes:
         flight_info = []
         flight_price = int(i['MinPrice'])
         flight_info.append(flight_price)
-        if i['Direct'] == True:
+        if i['Direct']:
             direct_flight = 'Direct'
         else:
             direct_flight = 'In-Direct'
@@ -45,28 +48,28 @@ def parseResponse(parse):
         departure_date_time = outbound_leg.pop('DepartureDate')
         departure_date = ""
         departure_time = ""
-        T_found = False
+        t_found = False
         for letter in departure_date_time:
-            if letter != 'T' and T_found == False:
+            if letter != 'T' and t_found is False:
                 departure_date = departure_date + letter
             elif letter == 'T':
-                T_found = True
+                t_found = True
                 continue
-            if T_found == True:
+            if t_found:
                 departure_time = departure_time + letter
         flight_info.append(departure_date)
         flight_info.append(departure_time)
         quote_date_time = i['QuoteDateTime']
         quote_date = ""
         quote_time = ""
-        T_found = False
+        t_found = False
         for letter in quote_date_time:
-            if letter != 'T' and T_found == False:
+            if letter != 'T' and t_found is False:
                 quote_date = quote_date + letter
             elif letter == 'T':
-                T_found = True
+                t_found = True
                 continue
-            if T_found == True:
+            if t_found:
                 quote_time = quote_time + letter
         flight_info.append(quote_date)
         flight_info.append(quote_time)
@@ -95,6 +98,8 @@ def parseResponse(parse):
         carrier_list[carrier_id] = carrier_name
 
     currencies = parse['Currencies']
+    currency_code = ""
+    currency_symbol = ""
     for i in currencies:
         currency_code = i['Code']
         currency_symbol = i['Symbol']
@@ -129,7 +134,22 @@ def parseResponse(parse):
         overall_flight_info.append(flight[8])
     return overall_flight_info
 
-# Testing In-Bound/Out-Bound Flight Search
+
+def createDB(dbname, flight_information):
+    conn = sqlite3.connect(dbname)  # connect database to file dbname
+    c = conn.cursor()  # cursor in vim, points to place in db
+    c.execute("CREATE TABLE Flights(Currency TEXT, Price TEXT, Direct TEXT, AirCarriers TEXT, DepartureAirport TEXT, DepartureCity TEXT, ArrivalAirport TEXT, ArrivalCity TEXT, FlightDate TEXT, FlightTime TEXT, QuoteDate TEXT, QuoteTime TEXT);")
+    for i in flight_information:
+        c.execute("INSERT INTO Flights VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", i)
+    # c.execute("SELECT * FROM Flights")
+    # rows = c.fetchall()
+    # for row in rows:
+        # print(row)
+    conn.commit()
+    conn.close()
+
+
+# Testing In-Bound/Out-Bound Flight Search/SQLite Table Creation
 d_country = "US"
 d_currency = "USD"
 d_locale = "en-US"
@@ -150,22 +170,6 @@ r_outbounddate = "2020-12-22"
 return_flight_data = callFlightApi(r_country, r_currency, r_locale, r_originplace, r_destinationplace, r_outbounddate)
 print(return_flight_data)
 
-inbound_outbound_flightdata = []
-inbound_outbound_flightdata.append(departure_flight_data)
-inbound_outbound_flightdata.append(return_flight_data)
-
-
-def createDB(dbname, flight_data):
-    conn = sqlite3.connect(dbname) # connect database to file dbname
-    c = conn.cursor()  # cursor in vim, points to place in db
-    c.execute('''CREATE TABLE Flights(Currency TEXT, Price TEXT, Direct TEXT, AirCarriers TEXT, DepartureAirport TEXT, DepartureCity TEXT, ArrivalAirport TEXT, ArrivalCity TEXT, FlightDate TEXT, FlightTime TEXT, QuoteDate TEXT, QuoteTime TEXT);''')
-    for i in flight_data:
-        c.execute("INSERT INTO Flights VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (i))
-    c.execute("SELECT * FROM Flights")
-    rows = c.fetchall()
-    for row in rows:
-        print(row)
-    conn.commit()
-    conn.close()
-
-createDB('Flights2', inbound_outbound_flightdata)
+inbound_outbound_flightdata = [departure_flight_data, return_flight_data]
+print(inbound_outbound_flightdata)
+createDB('Flights3', inbound_outbound_flightdata)
