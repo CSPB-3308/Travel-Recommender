@@ -1,0 +1,31 @@
+    def test_count_numeric(self):
+        #This is testing upper and lower case and also a spelled out word seven
+        text = "tesing123 seVen 0"
+        t = textproc.Processor.count_numeric(text)
+        self.assertEqual(t, 4, "'text' not returning correct amount of numbers 0-9")
+
+        # This is testing the case where the string is just nothing
+        nothing = ""
+        n = textproc.Processor.count_numeric(nothing)
+        self.assertEqual(n, 0, "'nothing' not returning correct amount of number 0-9")
+        
+        #This is testing where the beginning of the string is blank
+        begin_blank = "                12345"
+        bb = textproc.Processor.count_numeric(begin_blank)
+        self.assertEqual(bb, 5, "'begin_blank' not returning correct amount of number 0-9")
+        
+        #This is testing where the end of the string is blank
+        end_blank = "12345678          "
+        eb = textproc.Processor.count_numeric(end_blank)
+        self.assertEqual(eb, 8, "'end_blank' not returning correct amount of number 0-9")
+        
+        #This is testing a lot of special characters
+        characters = R'"000000000!@#$%^&*()_-+={}[]"/x:;?/>OOOOO<,.~`abcdefghijklmnopqrstuvwxyz123456789"'#This is testing a lot of special characters
+        c = textproc.Processor.count_numeric(characters)
+        self.assertEqual(c, 18, "'characters' not returning correct amount of number 0-9")
+        
+        #This is testing singe quote character
+        single_quotes = R"abcdef'hij1234'''"#This is testing singe quote character
+        sq = textproc.Processor.count_numeric(single_quotes)
+        self.assertEqual(sq, 4, "'single_quotes' not returning correct amount of number 0-9")
+
