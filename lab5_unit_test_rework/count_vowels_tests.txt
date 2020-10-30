@@ -1,0 +1,27 @@
+def count_vowels tests:
+
+1. Test that an empty string returns 0. The test will pass an empty string into the count_vowels 
+   method and assert that the answer given back is equal to 0. 
+
+2. Test that a string with a single vowel character returns 1. The test will pass a 1 length 
+   string that contains a vowel into the count_vowels method and assert that the answer given
+   is equal to 1.
+
+3. Test that a nonempty string with no vowels returns 0. The test will pass a string with
+   consonants, symbols, numbers, etc. with no vowels and assert that the answer given back
+   is equal to 0. 
+
+4. Test that a string with multiple vowels scattered throughout with consonants and other symbols returns the correct 
+   number of vowels in the string. The test will pass a string with constonants, symbols, numbers, 
+   and multiple vowels scattered throughout the string and assert that the answer give back is equal to the number
+   of vowels contained in the string.
+
+
+5. Test that the function is case insensitive. The test will pass a string with both uppercase and lowercase 
+   vowels and assert that the answer given back is equal to the sum of the number of uppercase and lowercase vowels.
+
+6. Test that unprintable characters do not affect the vowel count. Pass in a string with non-printable characters
+   such as \b and \a along with vowels. Assert that only the number of vowels in the string is returned.
+
+
+   
