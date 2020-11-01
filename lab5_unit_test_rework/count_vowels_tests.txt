@@ -1,3 +1,44 @@
+Unit-tests for count() function: 
+Format: 
+* def test_count(self):
+    text = XXX
+    p = textproc.Processor(text)
+    count = p.count()
+    self.assertEqual(count, ‘expected count of chars in p’ , "length of 'text' does not match input”)
+    
+    For each of these options assign text to be these strings
+        * test empty string: should return 0 because there is no values within the input 
+        * test string of all whitespace:  whitespace is included in the definition of characters in python and should return the respective count of whitespace chars
+        * test string of numbers: should return correct number of numbers input, as long as numbers are in string format 
+        * test string of letters: should return correct number of letters making up the string
+        * test string of punctuation: should return correct count of punctuation because punctuations is included in the definition of characters in python
+        * test string of special characters: should return 0, special characters should be ignored, as they are not considered valid characters for a string  
+        * test string with combination of spaces, letters and numbers: should return correct count of all spaces, letters, and numbers summed together 
+        * test string with combination of spaces, letters and numbers with newline special char at end: should return correct count of all spaces, letters, and numbers summed together, while ignoring the newline char at end (verify letter 'n' included in the newline is not counted as a valid letter) 
+    Note:  any non-strings would be stopped by an exception prior to being pushed to the count() function, no need to test this 
+
+Unit-tests for count_alpha() function: 
+Format: 
+* def test_count_alpha(self):
+     text = XXX
+     p = textproc.Processor(text)
+     count = p.count_alpha()
+     self.assertEqual(count, ‘expected count of letters in p’ , “count of letters in text' does not match input”)
+    
+    For each of these options assign text to be these types of strings:
+        * test empty string: should return 0 because there is no values within the input 
+        * test string of all whitespace: should return 0 because whitespace is not a letter
+        * test string of numbers: should return 0 because numbers are not included in the definition of letters
+        * test string of letters: should return correct number letters reflected in string 
+        * test string of punctuation: should return 0, punctuation should not be counted as a letter
+        * test string of special characters: should return 0 
+        * test string with combination of spaces, letters and numbers: should return value reflective of count of letters in string, no-more, no-less
+        * test string with combination of spaces, letters and numbers with newline special char at end: should return value reflective of count of letters in string, no-more, no-less, verify special characters are ignored in count correctly
+        * test string with numbers and letters alternating one another: output should return count of ONLY letters not the numbers in the string
+        * string with combination of capital and lower-case letters: verify that function is not case sensitive and counts all letters correctly, should return count  of all letters in string regardless of case  
+    Note:  any non-strings would be stopped by an exception prior to being pushed to the count() function, no need to test this 
+   
+
 def count_vowels tests:
 
 1. Test that an empty string returns 0. The test will pass an empty string into the count_vowels 
@@ -16,12 +57,9 @@ def count_vowels tests:
    and multiple vowels scattered throughout the string and assert that the answer give back is equal to the number
    of vowels contained in the string.
 
-
 5. Test that the function is case insensitive. The test will pass a string with both uppercase and lowercase 
    vowels and assert that the answer given back is equal to the sum of the number of uppercase and lowercase vowels.
 
 6. Test that unprintable characters do not affect the vowel count. Pass in a string with non-printable characters
    such as \b and \a along with vowels. Assert that only the number of vowels in the string is returned.
-
-
    
