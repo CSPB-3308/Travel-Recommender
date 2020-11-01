@@ -4,6 +4,7 @@ Format: test constructor by entering in a number, should raise exception as pred
     self.assertRaises(Exception, textproc.Processor, 1234)
     * Also test that exception is raised when no parameter is passed in, check in same methodology via assertRaises, should throw same exception 
 
+
 Unit-tests for count() function: 
 Format: 
 * def test_count(self):
@@ -22,6 +23,7 @@ Format:
         * test string with combination of spaces, letters and numbers: should return correct count of all spaces, letters, and numbers summed together 
         * test string with combination of spaces, letters and numbers with newline special char at end: should return correct count of all spaces, letters, and numbers summed together, while ignoring the newline char at end (verify letter 'n' included in the newline is not counted as a valid letter) 
     Note:  any non-strings would be stopped by an exception prior to being pushed to the count() function, no need to test this 
+
 
 Unit-tests for count_alpha() function: 
 Format: 
@@ -45,8 +47,39 @@ Format:
     Note:  any non-strings would be stopped by an exception prior to being pushed to the count() function, no need to test this 
    
 
-def count_vowels tests:
+def test_count_numeric(self):
+        #This is testing upper and lower case and also a spelled out word seven
+        text = "tesing123 seVen 0"
+        t = textproc.Processor.count_numeric(text)
+        self.assertEqual(t, 4, "'text' not returning correct amount of numbers 0-9")
 
+        # This is testing the case where the string is just nothing
+        nothing = ""
+        n = textproc.Processor.count_numeric(nothing)
+        self.assertEqual(n, 0, "'nothing' not returning correct amount of number 0-9")
+        
+        #This is testing where the beginning of the string is blank
+        begin_blank = "                12345"
+        bb = textproc.Processor.count_numeric(begin_blank)
+        self.assertEqual(bb, 5, "'begin_blank' not returning correct amount of number 0-9")
+        
+        #This is testing where the end of the string is blank
+        end_blank = "12345678          "
+        eb = textproc.Processor.count_numeric(end_blank)
+        self.assertEqual(eb, 8, "'end_blank' not returning correct amount of number 0-9")
+        
+        #This is testing a lot of special characters
+        characters = R'"000000000!@#$%^&*()_-+={}[]"/x:;?/>OOOOO<,.~`abcdefghijklmnopqrstuvwxyz123456789"'#This is testing a lot of special characters
+        c = textproc.Processor.count_numeric(characters)
+        self.assertEqual(c, 18, "'characters' not returning correct amount of number 0-9")
+        
+        #This is testing singe quote character
+        single_quotes = R"abcdef'hij1234'''"#This is testing singe quote character
+        sq = textproc.Processor.count_numeric(single_quotes)
+        self.assertEqual(sq, 4, "'single_quotes' not returning correct amount of number 0-9")
+
+
+def count_vowels tests:
 1. Test that an empty string returns 0. The test will pass an empty string into the count_vowels 
    method and assert that the answer given back is equal to 0. 
 
