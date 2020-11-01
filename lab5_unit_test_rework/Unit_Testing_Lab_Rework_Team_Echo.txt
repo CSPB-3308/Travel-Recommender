@@ -1,3 +1,9 @@
+Unit-test for verifying that constructor raises an error if a non-string value is passed:  
+Format: test constructor by entering in a number, should raise exception as predicted (i.e. "Processors require strings") 
+* def test_init_not_string(self):
+    self.assertRaises(Exception, textproc.Processor, 1234)
+    * Also test that exception is raised when no parameter is passed in, check in same methodology via assertRaises, should throw same exception 
+
 Unit-tests for count() function: 
 Format: 
 * def test_count(self):
