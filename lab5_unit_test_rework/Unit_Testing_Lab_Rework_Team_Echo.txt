@@ -101,4 +101,22 @@ def count_vowels tests:
 
 6. Test that unprintable characters do not affect the vowel count. Pass in a string with non-printable characters
    such as \b and \a along with vowels. Assert that only the number of vowels in the string is returned.
+
+
+ def test_phonenum(self):
+
+	## The first four tests make sure that a normally formatted phone number is accepted... based on how the regex is
+	setup in the other file :phonenum = re.compile(r'^[0-9]{3}([ \-.])*[0-9]{3}\1*[0-9]{4}$')
+
+        self.assertEqual(textproc.Processor("248-650-1987").is_phonenumber(),True,"rejected Basic '-' # ")
+        self.assertEqual(textproc.Processor("248.650.1987").is_phonenumber(),True,"rejected Basic '.' # ")
+        self.assertEqual(textproc.Processor("248 650 1987").is_phonenumber(),True,"rejected Basic space sep #")
+        self.assertEqual(textproc.Processor("2486501987").is_phonenumber(),True,"rejected basic non delimited number")
+        
+	## the next two tests ensure the proper about of digits is passed
+	self.assertEqual(textproc.Processor("24865019").is_phonenumber(),False,"Accepted wrong # of digits")
+        self.assertEqual(textproc.Processor("24865019876").is_phonenumber(),False,"Accepted wrong # of digits")
+	
+	## the last test confirms that the phone number is only accepting numeric inputs	
+	self.assertEqual(textproc.Processor("abc-345-uh$^").is_phonenumber(),False,"Accepted non numbers")
    
