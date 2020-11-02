@@ -1,0 +1,40 @@
+    def test_is_phonenuber(self):
+        #Need to test if the phone number is a valid us phone number
+        #According to https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#United_States,_Canada,_and_other_NANP_countries
+        #The US follows the North American Numbering Plan (NANP) format of NPA-NXX-XXXX with an optional 1 in front
+        #A list of acceptable formats are:
+       
+        #Length of 16 example
+        # 1 (NPA) NXX-XXXX
+       
+        #Length of 14 examples
+        # 1-NPA/NXX-XXXX
+        # 1 NPA NXX XXXX
+        # 1.NPA.NXX.XXXX
+        # 1-NPA-NXX-XXXX
+        # (NPA) NXX-XXXX
+       
+        #Length of 12 examples
+        #   NPA-NXX-XXXX
+        #   NPA.NXX.XXXX
+        #   NPA NXX XXXX
+        #   NPA/NXX-XXXX
+       
+        #Tests needed to ensure that the correct format has been entered
+        #1) Length of string is either 16 or 14 or 12
+        #2) If length is 16 ensure that the first 3 characters are {1 (}
+        #3) If length is 16 ensure that the 4th and 9th character is {2 thru 9}
+        #4) If length is 16 ensure that the 5th,6th,10th,11th,13th-16th characters are {0 thru 9}
+        #5) If length is 16 ensure that the 7th-8th characters are {) }
+        #6) If length is 16 ensure that the 12th character is {-}
+        #
+        #7) If length is 14 ensure that the 1st character is {1} or {(}
+        #8) If lenght is 14 and first character is {1}  test that the combination of the 2nd, 6th, and 10th characters are {-/-} or {   } or {...} or {---}
+        #9) If lenght is 14 and first character is {1}  test that the 3rd and 7th caracters are {2 thru 9}
+        #8) If lenght is 14 and first character is {1} test that the 4th-5th,8th-9th,and 11th-14th characters are {0 thru 9}
+        #11) If lenght is 14 and first character is {(} ensure 2nd and 7th characters are {2 thru 9}
+        #12) if length is 14 and first character is {(} ensure 3rd-4th,8th-9th, and 11th-14th characters are {0 thru 9}
+        #
+        #13) if length is 12 ensure 1st and 5th characters are {2 thru 9}
+        #14) If lenght is 12 test that the combination of the 4th and 8th characters are {--} or {..} or {  } or {/-}
+        #15) If lenght is 12 test that 2nd-3rd,6th-7th,and 9th-12th characters are {0 thru 9}
