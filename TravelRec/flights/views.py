@@ -4,7 +4,15 @@ from django.http import HttpResponse
 from .models import testFlightData
 
 def index(request):
-    return HttpResponse("Hello, world welcome to the TravelRec Flights app")
+    return render(request,'user_login/get_user.html')
+
+def login(request):
+    return render(request,'user_login/login.html')
+
+def register(request):
+    return render(request,'user_login/register.html')
+
+
 
 def flights(request):
     return HttpResponse("These are the flights you found!")
