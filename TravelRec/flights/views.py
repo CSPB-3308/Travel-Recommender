@@ -6,6 +6,10 @@ from .models import testFlightData
 def index(request):
     return HttpResponse("Hello, world welcome to the TravelRec Flights app")
 
+def flights(request):
+    return HttpResponse("These are the flights you found!")
+
+
 def picker(request):
     return render(request,'flights/picker.html')
    
