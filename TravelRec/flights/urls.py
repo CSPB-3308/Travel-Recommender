@@ -9,6 +9,8 @@ urlpatterns = [
      path('register/',views.register, name = 'regiester'),
      path('flights/',views.flights, name = 'flights'),
 	path('picker/',views.picker, name = 'picker'),
+     path('python/',views.python_example, name = 'python_example'),
+
 	path('detail/',views.flight_detail_view, name = 'detail'),
         ]
 
