@@ -2,7 +2,6 @@ from time import sleep, strftime
 from random import randint
 import pandas as pd
 from selenium import webdriver
-from IPython.display import HTML
 # Source: https://towardsdatascience.com/if-you-like-to-travel-let-python-help-you-scrape-the-best-fares-5a1f26213086
 
 
@@ -118,7 +117,7 @@ def page_scrape(date_outbound, date_inbound):
     flights_df['Return Number of Stops'] = inbound_stops
     flights_df['Return Stop Cities'] = inbound_stop_cities
     flights_df['Price'] = prices_list
-    flights_df['timestamp'] = strftime("%Y-%m-%d-%H:%M")  # so we can know when it was scraped
+    flights_df['Timestamp'] = strftime("%Y-%m-%d-%H:%M")  # so we can know when it was scraped
     return flights_df
 
 
@@ -147,7 +146,7 @@ date_start = '2020-12-21'
 date_end = '2020-12-27'
 
 df = start_kayak(city_from, city_to, date_start, date_end)
-result = df.to_html(classes='table table-striped')
+result = df.to_html()
 print(result)
 text_file = open("flights.html", "w")
 text_file.write(result)
