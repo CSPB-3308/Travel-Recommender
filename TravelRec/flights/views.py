@@ -1,11 +1,15 @@
 from django.shortcuts import render
 
+from .forms import CreateFlightForm
 from django.http import HttpResponse
 from .models import testFlightData
 from subprocess import run,PIPE
 import sys
 from pathlib import Path
 
+#lease be careful editing and prefebly  do not edit an existing view
+#If you need a view make a new one.
+#I had to redo a bunch of things that were working.
 
 def index(request):
     return render(request,'user_login/get_user.html')
@@ -18,7 +22,7 @@ def register(request):
 
 
 def picker(request):
-    return HttpResponse("These are the flights you found!")
+    return render(request,'flights/picker.html')
 
 
 def flights(request):
@@ -50,4 +54,17 @@ def flight_detail_view(request):
 
 
 	return render(request,'flights/detail.html',context)
+
+# testing a view that allows us to use a form to write to the database
+# try django tutorial 23 for reference
+def create_flight_view(request):
+    form = CreateFlightForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        #relods the blank form after saving data
+        form = CreateFlightForm
+    context = {
+        'form': form
+    }
+    return render(request,"flights/create_flight.html",context)
 # Create your views here.
