@@ -12,9 +12,12 @@ class Error(Enum):
     
 class QueryHandler:
     db_name = "db.sqlite3"
-    conn = sqlite3.connect(db_name, check_same_thread=False)
-    c = conn.cursor()
+    conn = None
+    c = None
     
+    def open_conn(self):
+        self.conn = conn = sqlite3.connect(self.db_name, check_same_thread=False)
+        self.c = conn.cursor()
     def close_conn(self):
         self.conn.close()
 
@@ -102,11 +105,10 @@ class QueryHandler:
     
     def queryRecommendations(self, destination, requestType):
         # Queries DB based on destination and request
-        # requestType must be Attractions, Dining, or lodging
-
+        # requestType must be one of the below
         if requestType not in ["attractions", "dining", "lodging", "destination"]:
             return Error.InvalidQuery
-        
+
         try:
             self.c.execute('SELECT rowid FROM destinations_destination WHERE Name="' + destination + '"' + ";")
             destRow = self.c.fetchone()

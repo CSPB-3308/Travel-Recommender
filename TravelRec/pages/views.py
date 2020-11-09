@@ -26,6 +26,7 @@ def recommendation_view(request):
             dest = form.cleaned_data['destination']
 
     query_handler = QueryHandler()
+    query_handler.open_conn()
     row = query_handler.queryRecommendations(dest, "destination")
     #construct context containing database and form information to pass into html page
     
