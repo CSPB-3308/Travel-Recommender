@@ -2,6 +2,9 @@ from time import sleep, strftime
 from random import randint
 import pandas as pd
 from selenium import webdriver
+from pathlib import Path
+
+
 # Source: https://towardsdatascience.com/if-you-like-to-travel-let-python-help-you-scrape-the-best-fares-5a1f26213086
 
 
@@ -120,8 +123,8 @@ def page_scrape(date_outbound, date_inbound):
     flights_df['Timestamp'] = strftime("%Y-%m-%d-%H:%M")  # so we can know when it was scraped
     return flights_df
 
-
-chromedriver_path = '/usr/local/bin/chromedriver' # Change this to your own chromedriver path!
+chromedriver_path = Path(__file__).parent / "chromedriver/chromedriver.exe"
+#chromedriver_path = '/usr/local/bin/chromedriver' # Change this to your own chromedriver path!
 driver = webdriver.Chrome(executable_path=chromedriver_path)
 sleep(2)
 
@@ -131,9 +134,12 @@ sleep(3)
 
 # Closing the popup
 
-driver.implicitly_wait(10)
+driver.implicitly_wait(5)
 xp_popup_close = '//button[contains(@id,"dialog-close") and contains(@class,"Button-No-Standard-Style close ")]'
 driver.find_elements_by_xpath(xp_popup_close)[-1].click()
+
+
+
 
 #city_from = input('From which city? ')
 #city_to = input('Where to? ')
@@ -148,7 +154,8 @@ date_end = '2020-12-27'
 df = start_kayak(city_from, city_to, date_start, date_end)
 result = df.to_html()
 print(result)
-text_file = open("flights.html", "w")
+html_path = Path(__file__).parent / "TravelRec/Pages/Templates/scraped_flights.html"
+text_file = open(html_path, "w")
 text_file.write(result)
 text_file.close()
 driver.quit()
