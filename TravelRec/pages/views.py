@@ -14,7 +14,7 @@ def home_view(request, *args, **kwargs):
     return render(request, "home.html", {'form': form})
 
 
-def choose_city(request):
+def recommendation_view(request):
     if request.method == 'POST':
         # get the form data that was submitted from home page
         form = ContactForm(request.POST)
