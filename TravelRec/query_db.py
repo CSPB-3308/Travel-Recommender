@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import sqlite3
+import pdb
 from enum import Enum
 
 class Error(Enum):
@@ -10,17 +11,16 @@ class Error(Enum):
     InvalidQuery = 5
     
 class QueryHandler:
-    def __init__(self):
-        db_name = "db.sqlite3"
-        conn = sqlite3.connect(dbName)
-        c = conn.cursor()
-
+    db_name = "db.sqlite3"
+    conn = sqlite3.connect(db_name, check_same_thread=False)
+    c = conn.cursor()
+    
     def close_conn(self):
         self.conn.close()
 
     def addDestination(self, name, country, descr):
 
-        if type(name) != str or type(descr) != str or type(productName) != str:
+        if type(name) != str or type(descr) != str or type(country) != str:
             return Error.ValueErr
         try: 
             self.c.execute("INSERT INTO Destination VALUES(?, ?, ?);", (name, country, descr))
@@ -36,9 +36,9 @@ class QueryHandler:
             return Error.ValueErr
         
         # make sure destination exists in dB and pull its row id
-        c.execute("SELECT rowid FROM Destination WHERE Name=" + str(destName) + ";")
+        self.c.execute('SELECT rowid FROM Destination WHERE Name="' + destName + '";')
     
-        row = c.fetchone()
+        row = self.c.fetchone()
 
         if row is None:
             return Error.InvalidDest
@@ -47,7 +47,7 @@ class QueryHandler:
         
         try:
             self.c.execute("INSERT INTO Lodging VALUES(?, ?, ?, ?, ?);", (name, destID, address, starRating, descr))
-            self.c.commit()
+            self.conn.commit()
         except:
             return Error.SQLExecuteError
         
@@ -59,9 +59,9 @@ class QueryHandler:
             return Error.ValueErr
         
         # make sure destination exists in dB and pull its row id
-        c.execute("SELECT rowid FROM Destination WHERE Name=" + str(destName) + ";")
+        self.c.execute('SELECT rowid FROM Destination WHERE Name="' + destName + '";')
     
-        row = c.fetchone()
+        row = self.c.fetchone()
 
         if row is None:
             return Error.InvalidDest
@@ -70,7 +70,7 @@ class QueryHandler:
         
         try:
             self.c.execute("INSERT INTO Dining VALUES(?, ?, ?, ?, ?, ?);", (name, destID, address, cuisineType, relCost, descr))
-            self.c.commit()
+            self.conn.commit()
         except:
             return Error.SQLExecuteError
         
@@ -82,9 +82,9 @@ class QueryHandler:
             return Error.ValueErr
         
         # make sure destination exists in dB and pull its row id
-        c.execute("SELECT rowid FROM Destination WHERE Name=" + str(destName) + ";")
+        self.c.execute('SELECT rowid FROM Destination WHERE Name="' + destName + '";')
     
-        row = c.fetchone()
+        row = self.c.fetchone()
 
         if row is None:
             return Error.InvalidDest
@@ -92,8 +92,8 @@ class QueryHandler:
             destID = row[0]
         
         try:
-            self.c.execute("INSERT INTO Attractions VALUES(?, ?, ?, ?, ?);", (name, destID, address, cost, descr))
-            self.c.commit()
+            self.c.execute("INSERT INTO Attractions VALUES(?, ?, ?, ?, ?);", (name, destID, address, descr, cost))
+            self.conn.commit()
         except:
             return Error.SQLExecuteError
         
@@ -103,18 +103,23 @@ class QueryHandler:
     def queryRecommendations(self, destination, requestType):
         # Queries DB based on destination and request
         # requestType must be Attractions, Dining, or lodging
-        if requestType not in ["Attractions", "Dining", "Lodging"]:
+
+        if requestType not in ["attractions", "dining", "lodging", "destination"]:
             return Error.InvalidQuery
         
         try:
-            c.execute("SELECT rowid FROM Destination WHERE Name=" + str(destination) + ";")
+            self.c.execute('SELECT rowid FROM destinations_destination WHERE Name="' + destination + '"' + ";")
             destRow = self.c.fetchone()
             if destRow is None:
                 return None
-            
-            self.c.execute("SELECT * FROM " + requestType + "WHERE DestinationID=" + str(destID) + ";")
-            
-            return self.c.fetchall()
+            else:
+                destID = destRow[0]
+            if requestType == "destination":
+                self.c.execute("SELECT * FROM destinations_" + requestType + " WHERE rowid=" + str(destID) + ";")
+                return self.c.fetchone()
+            else: 
+                self.c.execute("SELECT * FROM destinations_" + requestType + " WHERE DestinationID=" + str(destID) + ";")
+                return self.c.fetchall()
         
         except:
             return Error.SQLExecuteError
