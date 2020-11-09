@@ -29,3 +29,7 @@
 #####
 #### ***Step 6. Ensure that recommendations page comes up***
 ##### The url should now be: http://127.0.0.1:8000/recommendations/ or whatever base url you are given + "/recommendations/"
+#####
+#### ***Step7. Testing Web Scraping***
+##### Required software: numpy 1.19.3, selerium, pandas. These can all be installed with "pip install "
+
