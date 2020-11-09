@@ -4,7 +4,7 @@
     <h1>Travel Recommender</h1>
 
     <p>Please select a destination below:</p>
-    <form action="/choose/" method="POST">
+    <form action="/recommendations/" method="POST">
         {% csrf_token %}
         {{ form }}
         <button type="submit">Get Recommendations</button>
