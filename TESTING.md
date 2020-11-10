@@ -8,15 +8,23 @@
 #### Becca Meares
 
 # Automated Test Cases
-### ***Step 1. Cone the repository***
-##### git clone https://github.com/CSPB-3308/Travel-Recommender.git
-#####
-### ***Step 2. Navigate into main folder***
-##### cd Travel-Recommender\TravelRec
-#####
-### ***Step 3. Run automated tests***
-##### pythong manage.py test
-##### These automated tests should check that all the possible urls of our app are working properly
+### 1)Name: Test URLs
+###   Description: Ensure possible urls are working for app
+###   Pre-conditions: None
+###   Test steps
+####     a. Clone the repository: git clone https://github.com/CSPB-3308/Travel-Recommender.git
+####     b. Navigate into main folder: cd Travel-Recommender\TravelRec
+####     c. Run automated tests: python manage.py test
+###   Expected result
+####       all tests should pass
+###   Actual result
+####       print to the command prompt of how many tests pass / fail
+###   Status
+####       pass / fail display in the command prompt
+###   Notes
+####       none
+###   Post-conditions
+####       The user is then free to start running the app with python manage.py runserver
 
 # User Acceptance Testing
 ### ***Step 4. Start local server***
