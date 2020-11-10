@@ -36,12 +36,12 @@ def recommendation_view(request):
 
 def lodging_view(request):
 
-    return HttpResponse("Lodging page")
+    return render(request, "lodging.html", {})
 
 def attractions_view(request):
 
-    return HttpResponse("Attractions Page")
+    return render(request, "attractions.html", {})
 
 def restaurants_view(request):
 
-    return HttpResponse("Restaurants Page")
+    return render(request, "restaurants.html", {})
