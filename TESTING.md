@@ -25,6 +25,43 @@
 ####       none
 ###   Post-conditions
 ####       The user is then free to start running the app with python manage.py runserver
+### 2) Name:
+####     Test flight scraper
+###    Description:
+####     Ensure that scraping the data off the web works for flights
+###    Preconditions: 
+####      Required software: numpy 1.19.3, selerium, pandas. These can all be installed with "pip install ". Appears to only be working on a mac at the moment. Otherwise Before running the unit tests (from unit-tests folder) you will need to enter into HotelScraper.py and FlightScraper.py and verify that the correct chromedriver path has been selected for your machine: if it is a mac you do not need to do anything, if it is a PC you will need to uncomment the chromedriver path for windows and comment out the mac path (this is temporary will not apply once the functions are launched to heroku) 
+###    Test steps
+####       a. Navigate to Travel-Recommender\unit-tests
+####       b. python flighttest2.py
+####       c. python flighttest3.py
+###    Expected results
+####       If you are using a mac, then all tests should pass
+###    Status
+####       pass / fail will be displayed to the command prompt
+###    Notes
+####       This is still being debugged. flighttesting2, flighttesting3: each run and verify that the function will scrape correct flight data: you can see the output in the html files that will be produced --- must be run one at a time, selenium is not designed to have multiple queries at once (may need to run once or twice, if you've made alot of web connections in a short period of time: Kayak can get overwhelmed) 
+###    Post conditions
+####        The user will be able to get the most up to date flight info
+
+### 3) Name: Hotel flight scraper
+###    Description:
+####     Ensure that scraping the data off the web works for hotels
+###    Preconditions:
+####     Required software: numpy 1.19.3, selerium, pandas. These can all be installed with "pip install " Appears to only be working on a mac at the moment.
+###    Test steps
+####       a. Navigate to Travel-Recommender\unit-tests
+####       b. python hoteltesting1.py
+####       c. python hoteltesting2.py
+####       d. python hoteltesting3.py
+###    Expected results
+####       If you are using a mac, then all tests should pass
+###    Status
+####       pass / fail will be displayed to the command prompt
+###    Notes
+####       This is still being debugged. hoteltesting2, hoteltesting3, hoteltesting4: each run and verify different inputs to scrape hotel data: you can see the output in the html files that will be produced -- must be run one at a time, selenium is not designed to have multiple queries at once. testing.py: checks that all values being read into the webscraper have been verified/formatted appropriately; you will see 10 unit-tests (half for web-scraping hotels and half for flights) 
+###    Post conditions
+####        The user will be able to get the most up to date hotel info
 
 # User Acceptance Testing
 ### ***Step 4. Start local server***
@@ -45,9 +82,4 @@
 #####
 ### ***Step8. Testing Web Scraping***
 ##### Required software: numpy 1.19.3, selerium, pandas. These can all be installed with "pip install "
-##### This component has not been fully built into django yet, but is fully functional within python.
-##### Before running the unit tests (from unit-tests folder) you will need to enter into HotelScraper.py and FlightScraper.py and verify that the correct chromedriver path has been selected for your machine: if it is a mac you do not need to do anything, if it is a PC you will need to uncomment the chromedriver path for windows and comment out the mac path (this is temporary will not apply once the functions are launched to heroku) 
-#### To test: run each python file in the unit-tests folder (all tests should pass, on the terminal you can also see the print statements that tell you what caused the input to be checked/returned if incorrectly formated)
-##### testing.py: checks that all values being read into the webscraper have been verified/formatted appropriately; you will see 10 unit-tests (half for web-scraping hotels and half for flights)  
-##### flighttesting2, flighttesting3: each run and verify that the function will scrape correct flight data: you can see the output in the html files that will be produced --- must be run one at a time, selenium is not designed to have multiple queries at once (may need to run once or twice, if you've made alot of web connections in a short period of time: Kayak can get overwhelmed) 
-##### hoteltesting2, hoteltesting3, hoteltesting4: each run and verify different inputs to scrape hotel data: you can see the output in the html files that will be produced -- must be run one at a time, selenium is not designed to have multiple queries at once
+
