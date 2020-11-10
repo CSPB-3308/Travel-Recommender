@@ -32,3 +32,16 @@ def recommendation_view(request):
     
     query_handler.close_conn()
     return render(request, "recommendations.html", {'destination': dest, 'country': row[2], 'summary': row[3], 'user': name})
+
+
+def lodging_view(request):
+
+    return HttpResponse("Lodging page")
+
+def attractions_view(request):
+
+    return HttpResponse("Attractions Page")
+
+def restaurants_view(request):
+
+    return HttpResponse("Restaurants Page")
