@@ -51,8 +51,6 @@
 ##### if it is a PC you will need to uncomment the chromedriver path for windows and comment out the mac path (this is temporary will
 ##### not apply once the functions are launched to heroku) 
 ##### To test: run each python file in the unit-tests folder
-###### testing.py: checks that all values being read into the webscraper have been verified/formatted appropriately; you will see 10 unit-tests (half for web-  ###### scrapping hotels and half for flights)  
-###### flighttesting2, flighttesting3: each run and verify that the function will scrape correct flight data: you can see the output in the html files that will be produced
-############ must be run one at a time, selenium is not designed to have multiple queries at once (may need to run once or twice, if you've made alot of web ############ connections in a short period of time: Kayak can get overwhelmed) 
-###### hoteltesting2, hoteltesting3, hoteltesting4: each run and verify different inputs to scrape hotel data: you can see the output in the html files that will be produced
-############ must be run one at a time, selenium is not designed to have multiple queries at once
+##### testing.py: checks that all values being read into the webscraper have been verified/formatted appropriately; you will see 10 unit-tests (half for web-scraping hotels and half for flights)  
+##### flighttesting2, flighttesting3: each run and verify that the function will scrape correct flight data: you can see the output in the html files that will be produced --- must be run one at a time, selenium is not designed to have multiple queries at once (may need to run once or twice, if you've made alot of web connections in a short period of time: Kayak can get overwhelmed) 
+##### hoteltesting2, hoteltesting3, hoteltesting4: each run and verify different inputs to scrape hotel data: you can see the output in the html files that will be produced -- must be run one at a time, selenium is not designed to have multiple queries at once
