@@ -7,7 +7,8 @@ from datetime import datetime as dt
 from datetime import date
 import re
 # Source: https://towardsdatascience.com/if-you-like-to-travel-let-python-help-you-scrape-the-best-fares-5a1f26213086
-chromedriver_path = '/usr/local/bin/chromedriver'  # Change this to your own chromedriver path!
+chromedriver_path = Path(__file__).parent / "chromedriver/chromedriver.exe"
+#chromedriver_path = '/usr/local/bin/chromedriver' # Change this to your own chromedriver path!
 driver = webdriver.Chrome(executable_path=chromedriver_path)
 sleep(2)
 
