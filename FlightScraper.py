@@ -5,10 +5,14 @@ from selenium import webdriver
 import city_code_helper as c
 from datetime import datetime as dt
 from datetime import date
+from pathlib import Path
 import re
 # Source: https://towardsdatascience.com/if-you-like-to-travel-let-python-help-you-scrape-the-best-fares-5a1f26213086
-chromedriver_path = Path(__file__).parent / "chromedriver/chromedriver.exe"
-#chromedriver_path = '/usr/local/bin/chromedriver' # Change this to your own chromedriver path!
+
+# mac chrome driver path:
+chromedriver_path = Path(__file__).parent / "chromedriver"
+# PC chrome driver path:
+# chromedriver_path = Path(__file__).parent / "windows-chromedriver/chromedriver.exe"
 driver = webdriver.Chrome(executable_path=chromedriver_path)
 sleep(2)
 

@@ -1,14 +1,18 @@
+from pathlib import Path
 from time import sleep, strftime
 from random import randint
 import pandas as pd
 from selenium import webdriver
 from datetime import date
 from datetime import datetime as dt
+from pathlib import Path
 import re
 # Source: https://towardsdatascience.com/if-you-like-to-travel-let-python-help-you-scrape-the-best-fares-5a1f26213086
 
-chromedriver_path = Path(__file__).parent / "chromedriver/chromedriver.exe"
-#chromedriver_path = '/usr/local/bin/chromedriver' # Change this to your own chromedriver path!
+# mac chrome driver path:
+chromedriver_path = Path(__file__).parent / "chromedriver"
+# PC chrome driver path:
+# chromedriver_path = Path(__file__).parent / "windows-chromedriver/chromedriver.exe"
 driver = webdriver.Chrome(executable_path=chromedriver_path)
 sleep(2)
 
