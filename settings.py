@@ -11,6 +11,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -33,8 +34,10 @@ ALLOWED_HOSTS = ['*']
 #    "BASE_DIR/pages/static",
 #]
 
+STATICFILES_DIRS = [os.path.join(os.path.normpath(BASE_DIR), "ppages/static"),]
+
 # Adding for deployment to heroku pipeline
-STATIC_ROOT = os.path.join(BASE_DIR, 'pages/static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'pages/static')
 
 # Application definition
 
