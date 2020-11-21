@@ -33,6 +33,7 @@ STATICFILES_DIRS = [
     "BASE_DIR/pages/static",
 ]
 
+# Adding for deployment to heroku pipeline
 STATIC_ROOT = os.path.join(BASE_DIR, 'pages/static')
 
 # Application definition
