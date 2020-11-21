@@ -29,9 +29,9 @@ DEBUG = True
 # Changed ALLOWED_HOSTS = [] to the ['*'] below to prepare for heroku
 ALLOWED_HOSTS = ['*']
 
-STATICFILES_DIRS = [
-    "BASE_DIR/pages/static",
-]
+#STATICFILES_DIRS = [
+#    "BASE_DIR/pages/static",
+#]
 
 # Adding for deployment to heroku pipeline
 STATIC_ROOT = os.path.join(BASE_DIR, 'pages/static')
