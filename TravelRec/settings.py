@@ -32,8 +32,12 @@ DEBUG = False
 # Changed ALLOWED_HOSTS = [] to the ['*'] below to prepare for heroku
 ALLOWED_HOSTS = ['*']
 
+#STATICFILES_DIRS = [
+#    "BASE_DIR/pages/static2",
+#]
+
 STATICFILES_DIRS = [
-    "BASE_DIR/pages/static2",
+    os.path.join(BASE_DIR, 'pages/static'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'pages/static')
