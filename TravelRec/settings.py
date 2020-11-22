@@ -33,7 +33,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 STATICFILES_DIRS = [
-    "BASE_DIR/pages/static",
+    "BASE_DIR/pages/static2",
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'pages/static')
