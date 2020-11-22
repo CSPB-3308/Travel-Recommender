@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import os
 from pathlib import Path
+import dj_database_url
 import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,14 +27,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '7_$+!)u$i8j7-od#c(y^(w9$swtn5v94m%0lktjduk5xy1zblt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Changed ALLOWED_HOSTS = [] to the ['*'] below to prepare for heroku
 ALLOWED_HOSTS = ['*']
 
-#STATICFILES_DIRS = [
-#    "BASE_DIR/pages/static",
-#]
+STATICFILES_DIRS = [
+    "BASE_DIR/pages/static",
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'pages/static')
 
 # Application definition
 
@@ -51,6 +54,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -127,9 +131,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-#STATIC_URL = '/static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfilesz')
-STATIC_URL = "/static/"
+STATIC_URL = '/static/'
 
 django_heroku.settings(locals())
