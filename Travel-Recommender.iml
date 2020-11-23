@@ -3,8 +3,8 @@
   <component name="FacetManager">
     <facet type="django" name="Django">
       <configuration>
-        <option name="rootFolder" value="$MODULE_DIR$" />
-        <option name="settingsModule" value="TravelRec/settings.py" />
+        <option name="rootFolder" value="$MODULE_DIR$/pages" />
+        <option name="settingsModule" value="settings.py" />
         <option name="manageScript" value="manage.py" />
         <option name="environment" value="&lt;map/&gt;" />
         <option name="doNotUseTestRunner" value="false" />
@@ -20,5 +20,13 @@
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/pages/templates" />
+        <option value="$MODULE_DIR$/flights/templates/flights" />
+        <option value="$MODULE_DIR$/flights/templates/user_login" />
+        <option value="$MODULE_DIR$/notes_about_django" />
+      </list>
+    </option>
   </component>
 </module>

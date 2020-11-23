@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '7_$+!)u$i8j7-od#c(y^(w9$swtn5v94m%0lktjduk5xy1zblt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Changed ALLOWED_HOSTS = [] to the ['*'] below to prepare for heroku
 ALLOWED_HOSTS = ['*']
@@ -37,10 +37,10 @@ ALLOWED_HOSTS = ['*']
 #]
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'pages/static'),
+    os.path.join(BASE_DIR, 'pages/static/'),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'pages/static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'pages/static/')
 
 # Application definition
 
