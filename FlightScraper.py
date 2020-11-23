@@ -10,7 +10,7 @@ import re
 # Source: https://towardsdatascience.com/if-you-like-to-travel-let-python-help-you-scrape-the-best-fares-5a1f26213086
 
 # mac chrome driver path:
-chromedriver_path = Path(__file__).parent / "chromedriver"
+chromedriver_path = '/Applications/chromedriver'
 # PC chrome driver path:
 # chromedriver_path = Path(__file__).parent / "windows-chromedriver/chromedriver.exe"
 driver = webdriver.Chrome(executable_path=chromedriver_path)
@@ -180,7 +180,7 @@ def input_check(date_start, date_end):  # checks if dates are implemented correc
     return True
 
 
-def scrapeForFlights(city_to, city_from, date_start, date_end, html_file):
+def scrapeForFlights(city_to, city_from, date_start, date_end):
     # For when you want to accept input from command-line:
     # city_from = input('Where are you flying out of? Format must be city 2-letter state (in USA ex: Denver CO) or city 2-letter country (international ex: London UK) ')
     # city_to = input('Where are you visiting? Format must be city 2-letter state (in USA ex: Denver CO) or city 2-letter country (international ex: London UK) ')
@@ -210,7 +210,7 @@ def scrapeForFlights(city_to, city_from, date_start, date_end, html_file):
 
         df = start_kayak(city_from_formatted, city_to_formatted, date_start, date_end)
         result = df.to_html()
-        text_file = open(html_file, "w")
+        text_file = open('flights.htm', "w")
         text_file.write(result)
         text_file.close()
         driver.close()
@@ -219,3 +219,5 @@ def scrapeForFlights(city_to, city_from, date_start, date_end, html_file):
     else:
         driver.quit()
         return "Incorrect inputs"
+
+scrapeForFlights('London UK', 'Denver CO', '2020-12-12', '2020-12-24')

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Recommender</title>
+</head>
+<body>
+    <h1>Travel Recommender</h1>
+    <form name="search" action="flight.html" method="POST">
+        <p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
+        <section>
+            <p>
+              <label for="home">
+                <span>Home City: </span>
+                <strong><abbr title="required">*</abbr></strong>
+              </label>
+              <select id="home" name="home">
+                  <script type="module" src="city.js"></script>
+              </select>
+            </p>
+            <p>
+              <label for="destination">
+                <span>Destination: </span>
+                <strong><abbr title="required">*</abbr></strong>
+              </label>
+                <select id="destination" name="destination">
+                  <script type="module" src="city.js"></script>
+                </select>
+            </p>
+            <p>
+                <label for="date">
+                  <span>Outbound date:</span>
+                  <strong><abbr title="required">*</abbr></strong>
+                </label>
+                <input type="date" id="outdate" name="outdate">
+              </p>
+              <p>
+                <label for="date">
+                  <span>Return date:</span>
+                  <strong><abbr title="required">*</abbr></strong>
+                </label>
+                <input type="date" id="indate" name="indate">
+              </p>
+        </section>
+    </form>
+     <a href="flights.html"><button>Set Up Your Trip</button></a>
+</body>
+
+</html>
