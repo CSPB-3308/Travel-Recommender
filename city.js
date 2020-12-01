@@ -1,3 +1,4 @@
+
 var request = new XMLHttpRequest();
 request.open("GET", "./city_list.json", false);
 request.overrideMimeType("application/json");
@@ -18,5 +19,3 @@ for (const property in jsonData) {
     option.text = jsonData[property];
     x.add(option);
 }
-
-

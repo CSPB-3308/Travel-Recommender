@@ -52,6 +52,7 @@ df3.drop(df3[(df3['city'] == 'San Francisco') & (df3['country'] == 'Argentina')]
 df3.drop(df3[(df3['city'] == 'San Francisco') & (df3['country'] == 'El Salvador')].index, inplace=True)
 df3.drop(df3[(df3['city'] == 'San Jose') & (df3['country'] == 'Philippines')].index, inplace=True)
 df3.drop(df3[(df3['city'] == 'Santa Fe') & (df3['country'] == 'Argentina')].index, inplace=True)
+df3.drop(df3[(df3['city'] == 'Vancouver') & (df3['country'] == 'United States')].index, inplace=True)
 cities = df3['city'].to_list()
 with open('city_list.json', 'w') as outfile:
     json.dump(cities, outfile)
