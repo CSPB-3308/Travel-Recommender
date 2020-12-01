@@ -7,11 +7,30 @@ from subprocess import run,PIPE
 from .forms import FlightForm
 import sys
 from pathlib import Path
+import FlightScraper
 
 def flight_home(request):
 
     form = FlightForm()
     return render(request, "flights/flight_home.html", {'form': form})
+
+def flightOpts_view(request):
+    if request.method == 'POST':
+        # get the form data that was submitted from flight home page
+        form = FlightForm(request.POST)
+        if form.is_valid():
+            # extract form data that was entered
+            home = form.cleaned_data['home_airport']
+            dest = form.cleaned_data['destination_airport']
+            dep_date = form.cleaned_data['departure_date']
+            ret_date = form.cleaned_data['return_date']
+    
+    
+    # return_val = FlightScraper.start_kayak(home, dest, dep_date, ret_date)
+    
+    print(return_val)
+    #create new view and pass in the output from the flight scraper
+    return HttpResponse("Hello")
 
 #lease be careful editing and prefebly  do not edit an existing view
 #If you need a view make a new one.

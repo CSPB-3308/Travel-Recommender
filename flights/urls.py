@@ -16,4 +16,5 @@ from . import views
 
 urlpatterns = [
     path('', views.flight_home, name = 'flights'),
+    path('options', views.flightOpts_view, name = 'options')
 ]
