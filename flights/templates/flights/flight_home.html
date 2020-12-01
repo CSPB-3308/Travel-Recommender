@@ -1,0 +1,13 @@
+{% extends 'flights/base2.html' %}
+
+
+{% block content %}
+    <h1>Travel Recommender</h1>
+    <p>Please fill in your flight information:</p>
+    <form action="/flightOpts/" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Get Flights</button>
+    </form>
+{% endblock %} 
+

@@ -12,4 +12,8 @@ class CreateFlightForm(forms.ModelForm):
                   'flightCost'
                   ]
 
-
+class FlightForm(forms.Form):
+    home_aiport = forms.CharField()
+    dest_airport = forms.CharField()
+    departure_date = forms.DateField()
+    return_date = forms.DateField()
