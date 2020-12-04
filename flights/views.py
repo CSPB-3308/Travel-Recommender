@@ -7,7 +7,7 @@ from subprocess import run,PIPE
 from .forms import FlightForm
 import sys
 from pathlib import Path
-import FlightScraper
+#import FlightScraper
 
 def flight_home(request):
 
