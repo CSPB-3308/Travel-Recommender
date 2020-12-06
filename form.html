@@ -13,11 +13,10 @@
 				<span>Home City: </span>
 				<strong><abbr title="required">*</abbr></strong>
 			  </label>
-                  <select id="home" name="home">
+                  <select id="home" name="home" required>
                     <script>
                         var select = document.getElementById("home");
-                        console.log(select)
-                        var cities = new Array("Abu Dhabi", "Adelaide", "Albuquerque", "Alicante", "Amsterdam", "Anaheim", "Anchorage",
+                        var cities = new Array("", "Abu Dhabi", "Adelaide", "Albuquerque", "Alicante", "Amsterdam", "Anaheim", "Anchorage",
                         "Annapolis", "Asheville", "Athens", "Atlanta", "Auckland", "Austin", "Baltimore", "Bangkok", "Barcelona",
                         "Baton Rouge", "Beijing", "Berlin", "Boca Raton", "Boston", "Brisbane", "Brussels", "Budapest", "Buenos Aires",
                         "Burlington", "Cabo San Lucas", "Cairo", "Calgary", "Cannes", "Cape Town", "Charleston", "Charlotte", "Chicago",
@@ -44,15 +43,14 @@
                   </select>
 			</p>
 			<p>
-			  <label for="destination">
-				<span>Destination: </span>
-				<strong><abbr title="required">*</abbr></strong>
-			  </label>
-                <select id="destination" name="destination">
+              <label for="destination">
+                <span>Destination: </span>
+                <strong><abbr title="required">*</abbr></strong>
+              </label>
+                <select id="destination" name="destination" required>
                     <script>
                         var select = document.getElementById("destination");
-                        console.log(select)
-                        var cities = new Array("Abu Dhabi", "Adelaide", "Albuquerque", "Alicante", "Amsterdam", "Anaheim", "Anchorage",
+                        var cities = new Array("", "Abu Dhabi", "Adelaide", "Albuquerque", "Alicante", "Amsterdam", "Anaheim", "Anchorage",
                         "Annapolis", "Asheville", "Athens", "Atlanta", "Auckland", "Austin", "Baltimore", "Bangkok", "Barcelona",
                         "Baton Rouge", "Beijing", "Berlin", "Boca Raton", "Boston", "Brisbane", "Brussels", "Budapest", "Buenos Aires",
                         "Burlington", "Cabo San Lucas", "Cairo", "Calgary", "Cannes", "Cape Town", "Charleston", "Charlotte", "Chicago",
@@ -76,35 +74,56 @@
                             select.appendChild(el);
                         }
 				    </script>
-				</select>
+                </select>
 			</p>
 			<p>
 				<label for="date">
-				  <span>Outbound date:</span>
+				  <span>Outbound Date:</span>
 				  <strong><abbr title="required">*</abbr></strong>
 				</label>
-				<input type="date" id="outdate" name="outdate">
+				<input type="date" id="outdate" name="outdate" min="" max="2021-12-31"  onchange="updatedate();" required>
+                <script>
+                    var today = new Date();
+                    var dd = today.getDate();
+                    var mm = today.getMonth()+1;
+                    var yyyy = today.getFullYear();
+                    if(dd<10){
+                        dd='0'+dd;
+                    }
+                    if(mm<10){
+                        mm='0'+mm;
+                    }
+                    today = yyyy+'-'+mm+'-'+dd;
+                    document.getElementById("outdate").setAttribute("min", today);
+                </script>
+                <script>
+                    function updatedate() {
+                        var firstdate = document.getElementById("outdate").value;
+                        document.getElementById("indate").value = "";
+                        document.getElementById("indate").setAttribute("min",firstdate);
+                    }
+                </script>
 			  </p>
 			  <p>
 				<label for="date">
-				  <span>Return date:</span>
+				  <span>Return Date:</span>
 				  <strong><abbr title="required">*</abbr></strong>
 				</label>
-				<input type="date" id="indate" name="indate">
+				<input type="date" id="indate" name="indate" min="" max="2021-12-31" required>
 			  </p>
 		</section>
+        <button onclick="collectData()">Submit</button>
 	</form>
-	<button onclick="collectData()">Submit</button>
 	<p id = "demo"></p>
 	<script>
 	function collectData() {
-	  var x = document.getElementById("search");
-	  var text = "";
-	  var i;
-	  for (i = 0; i < x.length ;i++) {
-		text += x.elements[i].value + "<br>";
-	  }
-	  document.getElementById("demo").innerHTML = text;
+        var x = document.getElementById("search");
+        var text = "";
+        var i;
+        for (i = 0; i < x.length ;i++) {
+        text += x.elements[i].value + "<br>";
+        }
+        document.getElementById("demo").innerHTML = text;
 	}
     </script>
 <a href="flights"><button>Set Up Your Itinerary</button></a>
