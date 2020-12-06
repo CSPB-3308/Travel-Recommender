@@ -1,48 +1,113 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Travel Recommender</title>
+	<title>Travel Recommender</title>
 </head>
 <body>
-    <h1>Travel Recommender</h1>
-    <form name="search" action="flight.html" method="POST">
-        <p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
-        <section>
-            <p>
-              <label for="home">
-                <span>Home City: </span>
-                <strong><abbr title="required">*</abbr></strong>
-              </label>
-              <select id="home" name="home">
-                  <script type="module" src="city.js"></script>
-              </select>
-            </p>
-            <p>
-              <label for="destination">
-                <span>Destination: </span>
-                <strong><abbr title="required">*</abbr></strong>
-              </label>
+	<h1>Travel Recommender</h1>
+	<form id="search" action="form.php" method="POST">
+		<p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
+		<section>
+			<p>
+			  <label for="home">
+				<span>Home City: </span>
+				<strong><abbr title="required">*</abbr></strong>
+			  </label>
+                  <select id="home" name="home">
+                    <script>
+                        var select = document.getElementById("home");
+                        console.log(select)
+                        var cities = new Array("Abu Dhabi", "Adelaide", "Albuquerque", "Alicante", "Amsterdam", "Anaheim", "Anchorage",
+                        "Annapolis", "Asheville", "Athens", "Atlanta", "Auckland", "Austin", "Baltimore", "Bangkok", "Barcelona",
+                        "Baton Rouge", "Beijing", "Berlin", "Boca Raton", "Boston", "Brisbane", "Brussels", "Budapest", "Buenos Aires",
+                        "Burlington", "Cabo San Lucas", "Cairo", "Calgary", "Cannes", "Cape Town", "Charleston", "Charlotte", "Chicago",
+                        "Copenhagen", "Cozumel", "Dallas", "Denver", "Dubai", "Dublin", "Edinburgh", "Fairbanks", "Flagstaff",
+                        "Fort Lauderdale", "Fort Myers", "Galveston", "Galway", "Geneva", "Glasgow", "Greenville", "Hamburg", "Havana",
+                        "Hong Kong", "Honolulu", "Houston", "Ibiza", "Indianapolis", "Istanbul", "Johannesburg", "Kansas City", "Las Vegas",
+                        "Lima", "Lisbon", "London", "Los Angeles", "Madison", "Madrid", "Manchester", "Marrakech", "Melbourne", "Memphis",
+                        "Mexico City", "Miami", "Milan", "Milwaukee", "Moscow", "Myrtle Beach", "Naples", "Nashville", "New Orleans",
+                        "Nice", "Oklahoma City", "Omaha", "Orlando", "Oslo", "Ottawa", "Palm Springs", "Panama City Beach", "Paris",
+                        "Pensacola", "Perth", "Phoenix", "Phuket", "Pittsburgh", "Portland", "Prague", "Puerto Vallarta", "Quebec City",
+                        "Raleigh", "Reno", "Richmond", "Rio de Janeiro", "Rome", "Sacramento", "Salt Lake City", "Salzburg", "San Antonio",
+                        "San Diego", "San Francisco", "San Jose", "Santa Barbara", "Santa Fe", "Santo Domingo", "Savannah", "Seattle",
+                        "Seoul", "Shanghai", "Singapore", "Stockholm", "Sydney", "Tallahassee", "Tampa", "Tokyo", "Toronto", "Tucson",
+                        "Tulsa", "Vancouver");
+
+                        for(var i = 0; i < cities.length; i++) {
+                            var opt = cities[i];
+                            var el = document.createElement('option');
+                            el.textContent = opt;
+                            el.value = opt;
+                            select.appendChild(el);
+                        }
+                    </script>
+                  </select>
+			</p>
+			<p>
+			  <label for="destination">
+				<span>Destination: </span>
+				<strong><abbr title="required">*</abbr></strong>
+			  </label>
                 <select id="destination" name="destination">
-                  <script type="module" src="city.js"></script>
-                </select>
-            </p>
-            <p>
-                <label for="date">
-                  <span>Outbound date:</span>
-                  <strong><abbr title="required">*</abbr></strong>
-                </label>
-                <input type="date" id="outdate" name="outdate">
-              </p>
-              <p>
-                <label for="date">
-                  <span>Return date:</span>
-                  <strong><abbr title="required">*</abbr></strong>
-                </label>
-                <input type="date" id="indate" name="indate">
-              </p>
-        </section>
-    </form>
-     <a href="flights.html"><button>Set Up Your Trip</button></a>
+                    <script>
+                        var select = document.getElementById("destination");
+                        console.log(select)
+                        var cities = new Array("Abu Dhabi", "Adelaide", "Albuquerque", "Alicante", "Amsterdam", "Anaheim", "Anchorage",
+                        "Annapolis", "Asheville", "Athens", "Atlanta", "Auckland", "Austin", "Baltimore", "Bangkok", "Barcelona",
+                        "Baton Rouge", "Beijing", "Berlin", "Boca Raton", "Boston", "Brisbane", "Brussels", "Budapest", "Buenos Aires",
+                        "Burlington", "Cabo San Lucas", "Cairo", "Calgary", "Cannes", "Cape Town", "Charleston", "Charlotte", "Chicago",
+                        "Copenhagen", "Cozumel", "Dallas", "Denver", "Dubai", "Dublin", "Edinburgh", "Fairbanks", "Flagstaff",
+                        "Fort Lauderdale", "Fort Myers", "Galveston", "Galway", "Geneva", "Glasgow", "Greenville", "Hamburg", "Havana",
+                        "Hong Kong", "Honolulu", "Houston", "Ibiza", "Indianapolis", "Istanbul", "Johannesburg", "Kansas City", "Las Vegas",
+                        "Lima", "Lisbon", "London", "Los Angeles", "Madison", "Madrid", "Manchester", "Marrakech", "Melbourne", "Memphis",
+                        "Mexico City", "Miami", "Milan", "Milwaukee", "Moscow", "Myrtle Beach", "Naples", "Nashville", "New Orleans",
+                        "Nice", "Oklahoma City", "Omaha", "Orlando", "Oslo", "Ottawa", "Palm Springs", "Panama City Beach", "Paris",
+                        "Pensacola", "Perth", "Phoenix", "Phuket", "Pittsburgh", "Portland", "Prague", "Puerto Vallarta", "Quebec City",
+                        "Raleigh", "Reno", "Richmond", "Rio de Janeiro", "Rome", "Sacramento", "Salt Lake City", "Salzburg", "San Antonio",
+                        "San Diego", "San Francisco", "San Jose", "Santa Barbara", "Santa Fe", "Santo Domingo", "Savannah", "Seattle",
+                        "Seoul", "Shanghai", "Singapore", "Stockholm", "Sydney", "Tallahassee", "Tampa", "Tokyo", "Toronto", "Tucson",
+                        "Tulsa", "Vancouver");
+
+                        for(var i = 0; i < cities.length; i++) {
+                            var opt = cities[i];
+                            var el = document.createElement('option');
+                            el.textContent = opt;
+                            el.value = opt;
+                            select.appendChild(el);
+                        }
+				    </script>
+				</select>
+			</p>
+			<p>
+				<label for="date">
+				  <span>Outbound date:</span>
+				  <strong><abbr title="required">*</abbr></strong>
+				</label>
+				<input type="date" id="outdate" name="outdate">
+			  </p>
+			  <p>
+				<label for="date">
+				  <span>Return date:</span>
+				  <strong><abbr title="required">*</abbr></strong>
+				</label>
+				<input type="date" id="indate" name="indate">
+			  </p>
+		</section>
+	</form>
+	<button onclick="collectData()">Submit</button>
+	<p id = "demo"></p>
+	<script>
+	function collectData() {
+	  var x = document.getElementById("search");
+	  var text = "";
+	  var i;
+	  for (i = 0; i < x.length ;i++) {
+		text += x.elements[i].value + "<br>";
+	  }
+	  document.getElementById("demo").innerHTML = text;
+	}
+    </script>
+<a href="flights"><button>Set Up Your Itinerary</button></a>
 </body>
 
 </html>
