@@ -2,18 +2,21 @@ from time import sleep, strftime
 from random import randint
 import pandas as pd
 from selenium import webdriver
-import city_code_helper as c
-from datetime import datetime as dt
-from datetime import date
-from pathlib import Path
-import re
-# Source: https://towardsdatascience.com/if-you-like-to-travel-let-python-help-you-scrape-the-best-fares-5a1f26213086
+import os
 
-# mac chrome driver path:
-chromedriver_path = Path(__file__).parent / "chromedriver"
-# PC chrome driver path:
-# chromedriver_path = Path(__file__).parent / "windows-chromedriver/chromedriver.exe"
-driver = webdriver.Chrome(executable_path=chromedriver_path)
+# Source: https://towardsdatascience.com/if-you-like-to-travel-let-python-help-you-scrape-the-best-fares-5a1f26213086
+#         https://medium.com/@mikelcbrowne/running-chromedriver-with-python-selenium-on-heroku-acc1566d161c
+
+GOOGLE_CHROME_BIN = '/app/.apt/usr/bin/google-chrome'
+CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+
+chrome_options = webdriver.ChromeOptions()
+chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+chrome_options.add_argument('--disable-gpu')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--disable-dev-shm-usage')
+driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 sleep(2)
 
 
@@ -136,86 +139,32 @@ def page_scrape(date_outbound, date_inbound):
     return flights_df
 
 
-def city_input_check(city):
-    city_input = city.split(' ')  # make assumption, state/country has been spelled correctly
-    city_fixed = []
-    for i in city_input:  # rudimentary error checking
-        city_fixed.append(i.replace(",", ""))
-    city_correct = ''
-    if len(city_fixed) > 1:
-        city_fixed.pop(-1)
-        for i in city_fixed:
-            city_correct = city_correct + i + ' '
-    iata_code = c.convert_city_to_IATA(city_correct.strip(' '))
-    if iata_code == "Not Found":
-        print("Invalid City, please try again")
-        return ''
-    return iata_code
-
-
-def input_check(date_start, date_end):  # checks if dates are implemented correctly
-    # regex match python
-    matched_out = re.match("^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$", date_start)
-    is_match_out = bool(matched_out)
-    if not is_match_out:
-        print("Invalid Departure Date, please try again")
-        return False
-    matched_in = re.match("^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$", date_end)
-    is_match_in = bool(matched_in)
-    if not is_match_in:
-        print("Invalid Return Date, please try again")
-        return False
-    # convert to dt object to verify date is in future/not too far in future
-    # a must be greater than b (must leave before you return)
-    today_str = str(date.today())
-    today = dt.strptime(today_str, "%Y-%m-%d")
-    a = dt.strptime(date_start, "%Y-%m-%d")
-    b = dt.strptime(date_end, "%Y-%m-%d")
-    if today > a:
-        print("Cannot depart on a past date")
-        return False
-    if b < a:
-        print("Return Date must be after Departure, please try again")
-        return False
-    return True
-
-
-def scrapeForFlights(city_to, city_from, date_start, date_end, html_file):
+def scrapeForFlights(city_from, city_to, date_start, date_end):
     # For when you want to accept input from command-line:
     # city_from = input('Where are you flying out of? Format must be city 2-letter state (in USA ex: Denver CO) or city 2-letter country (international ex: London UK) ')
     # city_to = input('Where are you visiting? Format must be city 2-letter state (in USA ex: Denver CO) or city 2-letter country (international ex: London UK) ')
     # date_start = input('What is your departure date? Please use YYYY-MM-DD format only, must leave on/after:' + str(date.today()) + ' ')
     # date_end = input('When is your return date? Please use YYYY-MM-DD format only, must checkout after check-in date ')
-    correct = input_check(date_start, date_end)
-    city_from_formatted = city_input_check(city_from)
-    if city_from_formatted == '':
-        correct = False
-    city_to_formatted = city_input_check(city_to)
-    if city_to_formatted == '':
-        correct = False
-    if correct:
+
+    driver.implicitly_wait(10)
+    kayak = 'https://www.kayak.com/flights/LIS-SIN/2020-12-21/2020-12-25?sort=bestflight_a'
+
+    driver.get(kayak)
+    sleep(3)
+
+    # Closing the popup
+    try:
         driver.implicitly_wait(10)
-        kayak = 'https://www.kayak.com/flights/LIS-SIN/2020-12-01/2020-12-15?sort=bestflight_a'
+        xp_popup_close = '//button[contains(@id,"dialog-close") and contains(@class,"Button-No-Standard-Style close ")]'
+        driver.find_elements_by_xpath(xp_popup_close)[-1].click()
+    except:
+        pass
 
-        driver.get(kayak)
-        sleep(3)
+    df = start_kayak(city_from, city_to, date_start, date_end)
+    result = df.to_html()
+    text_file = open('flights.htm', "w")
+    text_file.write(result)
+    text_file.close()
+    driver.close()
+    driver.quit()
 
-        # Closing the popup
-        try:
-            driver.implicitly_wait(10)
-            xp_popup_close = '//button[contains(@id,"dialog-close") and contains(@class,"Button-No-Standard-Style close ")]'
-            driver.find_elements_by_xpath(xp_popup_close)[-1].click()
-        except:
-            pass
-
-        df = start_kayak(city_from_formatted, city_to_formatted, date_start, date_end)
-        result = df.to_html()
-        text_file = open(html_file, "w")
-        text_file.write(result)
-        text_file.close()
-        driver.close()
-        driver.quit()
-        return 0
-    else:
-        driver.quit()
-        return "Incorrect inputs"
