@@ -2,7 +2,7 @@ from time import sleep, strftime
 from random import randint
 import pandas as pd
 from selenium import webdriver
-import os
+#import os
 #from pathlib import Path
 # Source: https://towardsdatascience.com/if-you-like-to-travel-let-python-help-you-scrape-the-best-fares-5a1f26213086
 # mac chrome driver path:
@@ -21,11 +21,9 @@ chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--headless')
 chrome_options.add_argument('--disable-dev-shm-usage')
-driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-sleep(2)
-
-
-def start_usnews(location):
+def scrapeForThingsToDo(location):
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+    sleep(2)
     """City codes - it's the city, state (in US) and city, country for international
     (spaces in city name and country name must be _) ex: Denver_CO, London_England"""
 
@@ -40,11 +38,6 @@ def start_usnews(location):
         driver.find_elements_by_xpath(xp_popup_close)[-1].click()
     except:
         pass"""
-    df_things_todo = page_scrape()
-    return df_things_todo
-
-
-def page_scrape():
     # This function takes care of the scraping part
     place = '// *[ @class="GenericList__ListItemContainer-tjuxmv-1 deINyp"]'
     sections = driver.find_elements_by_xpath(place)
@@ -74,11 +67,8 @@ def page_scrape():
     places_df['Time To Spend'] = time_to_spend
     places_df['About'] = summary
     places_df['Timestamp'] = strftime("%Y-%m-%d-%H:%M")  # so we can know when it was scraped
-    return places_df
-
-
-def scrapeForThingsToDo(location):
-    df = start_usnews(location)
-    result = df.to_html()
+    result = places_df.to_html()
+    diver.close()
     driver.quit()
+    
     return result
