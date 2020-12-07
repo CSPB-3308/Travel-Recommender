@@ -10,15 +10,22 @@
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="JupyterTrust" id="280ef8e2-c93e-4e03-a3ad-12766b0c62e4" />
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
+  <component name="ProjectId" id="1lIv5iupH5L9dZ7hVDGbky2mYNG" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/flights" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Global Libraries" />
@@ -26,27 +33,14 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Bryan\Documents\Coding\CUBoulder\Software Development\GitHub\Travel-Recommender\flights" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Bryan\Documents\Coding\CUBoulder\Software Development\GitHub\Travel-Recommender\TravelRec" />
       <recent name="C:\Users\Bryan\Documents\Coding\CUBoulder\Software Development\GitHub\Travel-Recommender" />
       <recent name="C:\Users\Bryan\Documents\Coding\CUBoulder\Software Development\GitHub\Travel-Recommender\pages\static" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Bryan\Documents\Coding\CUBoulder\Software Development\GitHub\Travel-Recommender\flights" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -56,7 +50,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606094973171</updated>
-      <workItem from="1606094974319" duration="3562000" />
+      <workItem from="1606094974319" duration="4242000" />
+      <workItem from="1607297246943" duration="2011000" />
     </task>
     <servers />
   </component>
