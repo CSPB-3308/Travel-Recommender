@@ -12,17 +12,17 @@ import os
 #driver = webdriver.Chrome(executable_path=chromedriver_path)
 #sleep(2)
 
-GOOGLE_CHROME_BIN = '/app/.apt/usr/bin/google-chrome'
+GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
 CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
 
-chrome_options = webdriver.ChromeOptions()
-chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-chrome_options.add_argument('--disable-gpu')
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('--disable-dev-shm-usage')
+options = webdriver.ChromeOptions()
+chrome_bin = os.environ.get("GOOGLE_CHROME_BIN", "chromedriver")
+options.binary_location = chrome_bin
+options.add_argument('--disable-gpu')
+options.add_argument('--no-sandbox')
+options.add_argument('--headless')
 def scrapeForThingsToDo(location):
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+    driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
     sleep(2)
     """City codes - it's the city, state (in US) and city, country for international
     (spaces in city name and country name must be _) ex: Denver_CO, London_England"""
