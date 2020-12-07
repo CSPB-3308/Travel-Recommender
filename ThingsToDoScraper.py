@@ -78,4 +78,4 @@ def scrapeForThingsToDo(location):
     
     return result
 
-#scrapeForThingsToDo("London_England")
+scrapeForThingsToDo("London_England")
