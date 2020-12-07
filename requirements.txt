@@ -4,4 +4,3 @@ django-heroku
 requests
 selenium
 pandas
-webdriver-manager

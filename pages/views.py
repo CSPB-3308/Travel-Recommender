@@ -121,7 +121,7 @@ def recommendation_view(request):
             #construct context containing database and form information to pass into html page
             #hotel_results = hotel.scrapeForHotels(hotel_location, outbound_date, inbound_date)
             #flight_results = flight.scrapeForFlights(home_iata, destination_iata, outbound_date, inbound_date)
-            todo_results = todo.scrapeForThingsToDo(todo_location)
+            todo_results = todo
             #query_handler.close_conn()
             return render(request, "recommendations.html", {'destination': destination, 'home': home,
             'date1': outbound_date, 'date2':  inbound_date,'home_airport':home_iata, 'destination_airport':
