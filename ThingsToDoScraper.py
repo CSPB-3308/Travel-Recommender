@@ -2,8 +2,15 @@ from time import sleep, strftime
 from random import randint
 import pandas as pd
 from selenium import webdriver
-import os
+#import os
+#from pathlib import Path
 # Source: https://towardsdatascience.com/if-you-like-to-travel-let-python-help-you-scrape-the-best-fares-5a1f26213086
+# mac chrome driver path:
+##chromedriver_path = '/usr/local/bin/chromedriver'
+# PC chrome driver path:
+# chromedriver_path = Path(__file__).parent / "windows-chromedriver/chromedriver.exe"
+#driver = webdriver.Chrome(executable_path=chromedriver_path)
+#sleep(2)
 
 GOOGLE_CHROME_BIN = '/app/.apt/usr/bin/google-chrome'
 CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
@@ -18,11 +25,11 @@ driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), c
 sleep(2)
 
 
-def start_usnews(city, country):
+def start_usnews(location):
     """City codes - it's the city, state (in US) and city, country for international
     (spaces in city name and country name must be _) ex: Denver_CO, London_England"""
 
-    usnews = ('https://travel.usnews.com/' + city + '_' + country + '/Things_To_Do/')
+    usnews = ('https://travel.usnews.com/' + location + '/Things_To_Do/')
     driver.get(usnews)
     sleep(randint(8, 10))
 
@@ -70,11 +77,8 @@ def page_scrape():
     return places_df
 
 
-def scrapeForThingsToDo(location, country):
-    df = start_usnews(location, country)
-    df.to_json('results.js')
+def scrapeForThingsToDo(location):
+    df = start_usnews(location)
     result = df.to_html()
-    text_file = open('attractions.htm', "w")
-    text_file.write(result)
-    text_file.close()
     driver.quit()
+    return result
