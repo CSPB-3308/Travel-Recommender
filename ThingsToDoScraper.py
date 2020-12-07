@@ -18,6 +18,8 @@ CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
 options = webdriver.ChromeOptions()
 chrome_bin = os.environ.get("GOOGLE_CHROME_BIN", "chromedriver")
 options.binary_location = chrome_bin
+options.add_argument('--headless')
+options.add_argument('--disable-dev-shm-usage')
 options.add_argument('--disable-gpu')
 options.add_argument('--no-sandbox')
 options.add_argument('--headless')
@@ -29,7 +31,9 @@ def scrapeForThingsToDo(location):
     (spaces in city name and country name must be _) ex: Denver_CO, London_England"""
 
     usnews = ('https://travel.usnews.com/' + location + '/Things_To_Do/')
+    print(usnews)
     driver.get(usnews)
+    print(driver.page_source)
     sleep(randint(8, 10))
 
     # sometimes a popup shows up, so we can use a try statement to check it and close
@@ -73,3 +77,5 @@ def scrapeForThingsToDo(location):
     driver.quit()
     
     return result
+
+scrapeForThingsToDo("London_England")
