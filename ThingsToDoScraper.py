@@ -2,7 +2,7 @@ from time import sleep, strftime
 from random import randint
 import pandas as pd
 from selenium import webdriver
-#import os
+import os
 #from pathlib import Path
 # Source: https://towardsdatascience.com/if-you-like-to-travel-let-python-help-you-scrape-the-best-fares-5a1f26213086
 # mac chrome driver path:

@@ -1,7 +1,14 @@
 {% extends 'recommendationBase.html' %}
 
 {% block content %}
-   <h1>Hello: {{ user }} </h1>
-   <p>You've chosen: {{ destination }} in the country of {{ country }}. </p>
-   <p>{{ summary }}</p>
-{% endblock %} 
+   <p>Home: {{ home }} <p>
+   <p> Destination: {{ destination }} </p>
+   <p> Inbound Date: {{ date1 }}</p>
+   <p> Outbound Date: {{ date2 }}</p>
+   <p> Home Airport: {{ home_airport }}</p>
+   <p> Destination Airport: {{ destination_airport }}</p>
+   <p> Hotel Location: {{ hotel_location }}</p>
+   <p> To Do Location: {{ todo_location }}</p>
+   <p> Results: {{ todo_results }}</p>
+
+{% endblock %}  
