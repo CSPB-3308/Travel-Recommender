@@ -3,6 +3,7 @@ from random import randint
 import pandas as pd
 from selenium import webdriver
 import os
+from webdriver_manager.chrome import ChromeDriverManager
 #from pathlib import Path
 # Source: https://towardsdatascience.com/if-you-like-to-travel-let-python-help-you-scrape-the-best-fares-5a1f26213086
 # mac chrome driver path:
@@ -14,7 +15,6 @@ import os
 
 GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
 CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
-
 options = webdriver.ChromeOptions()
 chrome_bin = os.environ.get("GOOGLE_CHROME_BIN", "chromedriver")
 options.binary_location = chrome_bin
@@ -24,7 +24,8 @@ options.add_argument('--disable-gpu')
 options.add_argument('--no-sandbox')
 options.add_argument('--headless')
 def scrapeForThingsToDo(location):
-    driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
+    #driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
+    webdriver.Chrome(chrome_options=options, executable_path=ChromeDriverManager().install())
     sleep(2)
 
     """City codes - it's the city, state (in US) and city, country for international
