@@ -13,17 +13,17 @@ import os
 #sleep(2)
 
 def scrapeForThingsToDo(location):
-    GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
-    CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+    #GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+    #CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
     options = webdriver.ChromeOptions()
-    options.binary_location = os.environ.get(GOOGLE_CHROME_PATH)
+    options.binary_location = os.environ.get("GOOGLE_CHROME_PATH")
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-sh-usage')
+    options.add_argument('--disable-dev-shm-usage')
     #options.add_argument('--disable-gpu')
 
     #driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
-    driver = webdriver.Chrome(executable_path=os.environ.get(CHROMEDRIVER_PATH), chrome_options=options)
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options)
     sleep(2)
 
     """City codes - it's the city, state (in US) and city, country for international
