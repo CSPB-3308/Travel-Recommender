@@ -25,7 +25,7 @@ options.add_argument('--no-sandbox')
 options.add_argument('--headless')
 def scrapeForThingsToDo(location):
     #driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
-    webdriver.Chrome(chrome_options=options, executable_path=ChromeDriverManager().install())
+    driver = webdriver.Chrome(chrome_options=options, executable_path=ChromeDriverManager().install())
     sleep(2)
 
     """City codes - it's the city, state (in US) and city, country for international
