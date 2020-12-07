@@ -2,7 +2,7 @@ from time import sleep, strftime
 from random import randint
 import pandas as pd
 from selenium import webdriver
-#import os
+import os
 #from pathlib import Path
 # Source: https://towardsdatascience.com/if-you-like-to-travel-let-python-help-you-scrape-the-best-fares-5a1f26213086
 # mac chrome driver path:
@@ -68,7 +68,7 @@ def scrapeForThingsToDo(location):
     places_df['About'] = summary
     places_df['Timestamp'] = strftime("%Y-%m-%d-%H:%M")  # so we can know when it was scraped
     result = places_df.to_html()
-    diver.close()
+    driver.close()
     driver.quit()
     
     return result
