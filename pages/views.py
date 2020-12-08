@@ -114,7 +114,7 @@ def recommendation_view(request):
             else:
                 todo_location = todo_temp + '_' + CITY_INFO[destination][1].replace(' ', '_')
 
-            request.session['home_key'] = 123456
+            request.session['dest_key'] = destination
             #query_handler = QueryHandler()
             #query_handler.open_conn()
             #row = query_handler.queryRecommendations(destination, "destination")
@@ -131,58 +131,35 @@ def recommendation_view(request):
 
 
 def lodging_view(request):
-
-    return render(request, "lodging.html", {})
+    var = request.session.get('dest_key')
+    if var == "Boston":
+        return render(request, "lodging_boston.html", {})
+    elif var == "San Francisco":
+        return render(request, "lodging_sf.html",{})
+    elif var == "Miami":
+        return render(request, "lodging_miami.html",{})
+    else:
+        return render(request, "lodging.html", {})
 
 def attractions_view(request):
-    var = request.session.get('home_key')
-    if request.method == 'POST':
-        # get the form data that was submitted from home page
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            # extract form data that was entered
-            home = form.cleaned_data['home']
-            destination = form.cleaned_data['destination']
-            outbound_date = form.cleaned_data['outdate']
-            inbound_date = form.cleaned_data['indate']
+    var = request.session.get('dest_key')
+    if var == "Boston":
+        return render(request, "attractions_boston.html", {})
+    elif var == "San Francisco":
+        return render(request, "attractions_sf.html",{})
+    elif var == "Miami":
+        return render(request, "attractions_miami.html",{})
+    else:
+        return render(request, "attractions.html", {})
 
-            # select correct data to be imported into each correct scrapper
-            # flight data: need airport codes, to/from and dates
-            # hotel data: city/state or city/international country, format: Los-Angeles,CA, and dates
-            # things to do data: city/international country or city/state, format: Denver_CO, London_England
-            # flight parameters
-            home_iata = CITY_INFO[home][2]
-            destination_iata = CITY_INFO[destination][2]
-            # hotel parameters
-            hotel_city_temp = destination.replace(' ', '-')
-            if CITY_INFO[destination][0] != 'United States':
-                hotel_location = hotel_city_temp + ',' + CITY_INFO[destination][0].replace(' ', '-')
-            else:
-                hotel_location = hotel_city_temp + ',' + CITY_INFO[destination][1].replace(' ', '-')
-            # things to do parameters
-            todo_temp = destination.replace(' ', '_')
-            if CITY_INFO[destination][0] != 'United States':
-                todo_location = todo_temp + '_' + CITY_INFO[destination][0].replace(' ', '_')
-            else:
-                todo_location = todo_temp + '_' + CITY_INFO[destination][1].replace(' ', '_')
-
-
-            #query_handler = QueryHandler()
-            #query_handler.open_conn()
-            #row = query_handler.queryRecommendations(destination, "destination")
-            #construct context containing database and form information to pass into html page
-            #hotel_results = hotel.scrapeForHotels(hotel_location, outbound_date, inbound_date)
-            #flight_results = flight.scrapeForFlights(home_iata, destination_iata, outbound_date, inbound_date)
-            #######################33todo_results = todo.scrapeForThingsToDo(todo_location)
-            #query_handler.close_conn()
-            return render(request, "recommendations.html", {'destination': destination, 'home': home,
-            'date1': outbound_date, 'date2':  inbound_date,'home_airport':home_iata, 'destination_airport':
-            destination_iata, 'hotel_location': hotel_location, 'todo_location': todo_location, 'todo_results': todo_location})
-    else:     
-        return render(request, "recommendations.html", {'destination': var, 'home': var,
-            'date1': var, 'date2':  var,'home_airport':var, 'destination_airport':
-            var, 'hotel_location': var, 'todo_location': var, 'todo_results': var})
 
 def restaurants_view(request):
-
-    return render(request, "restaurants.html", {})
+    var = request.session.get('dest_key')
+    if var == "Boston":
+        return render(request, "restaurants_boston.html", {})
+    elif var == "San Francisco":
+        return render(request, "restaurants_sf.html",{})
+    elif var == "Miami":
+        return render(request, "restaurants_miami.html",{})
+    else:
+        return render(request, "restaurants.html", {})
