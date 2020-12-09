@@ -1,14 +1,18 @@
 {% extends 'recommendationBase.html' %}
-
 {% block content %}
-   <p>Home: {{ home }} <p>
-   <p> Destination: {{ destination }} </p>
-   <p> Inbound Date: {{ date1 }}</p>
-   <p> Outbound Date: {{ date2 }}</p>
-   <p> Home Airport: {{ home_airport }}</p>
-   <p> Destination Airport: {{ destination_airport }}</p>
-   <p> Hotel Location: {{ hotel_location }}</p>
-   <p> To Do Location: {{ todo_location }}</p>
-   <p> Results: {{ todo_results }}</p>
+
+   <h3> Home: {{ home }} </h3>
+   <h3> Destination: {{ destination }} </h3>
+   <h3> Departure Date: {{ date1 }} </h3>
+   <h3> Return Date: {{ date2 }} </h3>
+   <br>
+   <h2> Flights: </h2>
+   <div> {{ flight_results|safe }}</div>
+   <br>
+   <h2> Hotels: </h2>
+   <div> {{ hotel_results|safe }}</div>
+   <br>
+   <h2> Things To Do: </h2>
+   <div> {{ todo_results|safe }}</div>
 
 {% endblock %}  

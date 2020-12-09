@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'flights',
     'pages',
     'destinations',
+    'django.contrib.admindocs',
 ]
 
 MIDDLEWARE = [

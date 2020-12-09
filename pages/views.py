@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from .forms import ContactForm
 from query_db import QueryHandler
-#import HotelScraper as hotel
-import ThingsToDoScraper as todo
-#import FlightScraper as flight 
+import HotelScraper as hotel
+import ThingsToDoScraper as to_do
+import FlightScraper as flight
 
 # Create your views here.
 CITY_INFO = {"Abu Dhabi": ["United Arab Emirates", "AE", "AUH"], "Adelaide": ["Australia", "AU", "ADL"],
@@ -114,18 +113,17 @@ def recommendation_view(request):
             else:
                 todo_location = todo_temp + '_' + CITY_INFO[destination][1].replace(' ', '_')
 
-
-            #query_handler = QueryHandler()
-            #query_handler.open_conn()
-            #row = query_handler.queryRecommendations(destination, "destination")
-            #construct context containing database and form information to pass into html page
-            #hotel_results = hotel.scrapeForHotels(hotel_location, outbound_date, inbound_date)
-            #flight_results = flight.scrapeForFlights(home_iata, destination_iata, outbound_date, inbound_date)
-            todo_results = todo.scrapeForThingsToDo(todo_location)
-            #query_handler.close_conn()
-            return render(request, "recommendations.html", {'destination': destination, 'home': home,
-            'date1': outbound_date, 'date2':  inbound_date,'home_airport':home_iata, 'destination_airport':
-            destination_iata, 'hotel_location': hotel_location, 'todo_location': todo_location, 'todo_results': todo_results})
+            # query_handler = QueryHandler()
+            # query_handler.open_conn()
+            # row = query_handler.queryRecommendations(destination, "destination")
+            # construct context containing database and form information to pass into html page
+            flight_results = flight.scrapeForFlights(home_iata, destination_iata, outbound_date, inbound_date)
+            todo_results = to_do.scrapeForThingsToDo(todo_location)
+            hotel_results = hotel.scrapeForHotels(hotel_location, outbound_date, inbound_date)
+            # query_handler.close_conn()
+            return render(request, "recommendations.html", {'destination': destination, 'home': home, 'date1': outbound_date,
+                                                            'date2': inbound_date, 'flight_results': flight_results,
+                                                            'todo_results': todo_results, 'hotel_results': hotel_results})
 
 
 def lodging_view(request):

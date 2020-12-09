@@ -24,6 +24,7 @@ header {
     padding-top: calc((100vh - 280px)/2);
     box-sizing: border-box;
     padding-left: 100px;
+    overflow: scroll;
 }
 header h1 {
     font-size: 60px;
@@ -31,9 +32,11 @@ header h1 {
     font-weight: 600;
     line-height: 80px;
     margin-bottom: 30px;
+    overflow: scroll;
 }
 header ul {
     height: 50px;
+    overflow: scroll;
 }
 header ul a {
     height: 55px;
@@ -42,6 +45,7 @@ header ul a {
     text-decoration: none;
     line-height: 53px;
     color: #fff;
+    overflow: scroll;
 }
 
 header ul a.download {
@@ -51,10 +55,12 @@ header ul a.download {
     background-color: #2188ff;
     transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
     margin-right: 10px;
+    overflow: scroll;
 }
 header ul a.download:hover {
     background-color: #2155ff;
     border-color: #2155ff;
+    overflow: scroll;
 }
 
 header ul a.learnMore {
@@ -62,22 +68,26 @@ header ul a.learnMore {
     cursor: pointer;
     border: 1px solid rgba(255, 255, 255, 0.6);
     transition: background-color 0.25s ease-in-out,border-color 0.25s ease-in-out,color 0.25s ease-in-out;
+    overflow: scroll;
 }
 header ul a.learnMore:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: #fff;
+    overflow: scroll;
 }
 
 @media only screen and (max-width: 875px) {
     header {
         padding: 75px;
         padding-top: 150px;
+        overflow: scroll;
     }
 }
 @media only screen and (max-width: 800px) {
     header h1 {
         font-size: 50px;
         line-height: 65px;
+        overflow: scroll;
     }
 }
 
@@ -85,10 +95,12 @@ header ul a.learnMore:hover {
     header {
         padding: 12.5px;
         padding-top: 125px;
+        overflow: scroll;
     }
     header h1 {
         font-size: 37.5px;
         line-height: 50px;
+        overflow: scroll;
     }
 }
 @media only screen and (max-width: 395px) {
@@ -96,10 +108,12 @@ header ul a.learnMore:hover {
         text-align: center;
         font-size: 32.5px;
         line-height: 40px;
+        overflow: scroll;
     }
     header ul {
         margin-top: 30px;
         text-align: center;
+        overflow: scroll;
     }
     header ul a {
         width: 70%;
@@ -108,10 +122,12 @@ header ul a.learnMore:hover {
         font-size: 20px;
         text-decoration: none;
         line-height: 43px;
+        overflow: scroll;
     }
     header ul a.download {
         margin: 0;
         margin-bottom: 20px;
+        overflow: scroll;
     }
 }
 
@@ -127,43 +143,53 @@ nav {
     box-sizing: border-box;
     padding: 12.5px 100px;
     transition: background-color 0.25s;
+    overflow: scroll;
 }
 nav a {
     color: rgba(255, 255, 255, 0.55);
     transition: color 0.15s ease-in-out;
     text-decoration: none;
+    overflow: scroll;
 }
 nav a:hover {
     color: #fff;
+    overflow: scroll;
 }
 nav a.brandName {
     display: block;
     float: left;
     font-size: 50px;
     line-height: 1;
+    overflow: scroll;
 }
 nav ul {
     float: right;
     height: 50px;
+    overflow: scroll;
 }
 nav ul a {
     font-size: 17.5px;
     line-height: 50px;
     margin: 0 12.5px;
+    overflow: scroll;
 }
 
 nav.nonTopNav {
     background-color: #fff;
     box-shadow: 0 0 3vh black;
+    overflow: scroll;
 }
 nav.nonTopNav a.brandName {
     color: #2188ff;
+    overflow: scroll;
 }
 nav.nonTopNav a {
     color: #414f57;
+    overflow: scroll;
 }
 nav.nonTopNav a:hover {
     color: #2188ff;
+    overflow: scroll;
 }
 nav button.menuButton {
     display: none;
@@ -176,46 +202,56 @@ nav button.menuButton {
     padding: 2.5px;
     outline: none;
     cursor: pointer;
+    overflow: scroll;
 }
 nav button.menuButton svg {
     height: 100%;
     width: 100%;
+    overflow: scroll;
 }
 nav button.menuButton svg path {
     transition: fill 0.15s ease-in-out;
     fill: rgba(255, 255, 255, 0.55);
+    overflow: scroll;
 }
 nav button.menuButton:hover svg path {
     fill: #fff;
 }
 nav.nonTopNav button.menuButton svg path {
     fill: #414f57;
+    overflow: scroll;
 }
 nav.nonTopNav button.menuButton:hover svg path {
     fill: #2188ff;
+    overflow: scroll;
 }
 
 nav button.menuButton svg.menuIcon {
     display: block;
+    overflow: scroll;
 }
 nav button.menuButton svg.closeIcon {
     display: none;
+    overflow: scroll;
 }
 
 @media only screen and (max-width: 925px) {
     nav {
         padding: 12.5px 25px;
+        overflow: scroll;
     }
 }
 @media only screen and (max-width: 755px) {
     nav {
         padding: 12.5px;
+        overflow: scroll;
     }
     body.activeNavLinks {
-        overflow: hidden;
+        overflow: scroll;
     }
     nav button.menuButton {
         display: block !important;
+        overflow: scroll;
     }
     body.activeNavLinks nav {
         box-shadow: none;
@@ -223,12 +259,15 @@ nav button.menuButton svg.closeIcon {
         height: 100%;
         width: 100%;
         transition: none;
+        overflow: scroll;
     }
     body.activeNavLinks nav.nonTopNav {
         background-color: #fff;
+        overflow: scroll;
     }
     nav ul {
         display: none;
+        overflow: scroll;
     }
     body.activeNavLinks nav ul {
         display: block !important;
@@ -237,37 +276,46 @@ nav button.menuButton svg.closeIcon {
         width: 100%;
         height: auto;
         margin-top: calc(((100vh - 280px - 75px) / 2));
+        overflow: scroll;
     }
     body.activeNavLinks nav ul a {
         display: block;
         text-align: center;
         height: 70px;
         font-size: 30px;
+        overflow: scroll;
     }
     body.activeNavLinks nav button.menuButton svg.menuIcon {
         display: none;
+        overflow: scroll;
     }
     body.activeNavLinks nav button.menuButton svg.closeIcon {
         display: block;
+        overflow: scroll;
     }
 }
 @media only screen and (max-width: 500px) {
     nav {
         height: 65px;
+        overflow: scroll;
     }
     nav a.brandName {
         font-size: 40px;
+        overflow: scroll;
     }
     nav button.menuButton {
         height: 40px;
         width: 40px;
+        overflow: scroll;
     }
     body.activeNavLinks nav ul {
         margin-top: calc(((100vh - 280px - 65px) / 2));
+        overflow: scroll;
     }
     body.activeNavLinks nav ul a {
         height: 60px;
         font-size: 25px;
+        overflow: scroll;
     }
 }
 
@@ -278,6 +326,7 @@ section h1.headerLine {
     font-weight: 600;
     text-align: center;
     line-height: 1;
+    overflow: scroll;
 }
 section div.lineContainer {
     width: 100%;
@@ -286,6 +335,7 @@ section div.lineContainer {
     text-align: center;
     font-size: 0;
     margin: 25px 0;
+    overflow: scroll;
 }
 section div.lineContainer div.line {
     width: 50px;
@@ -294,27 +344,32 @@ section div.lineContainer div.line {
     background-color: #2188ff;
     margin: 0;
     line-height: 0;
+    overflow: scroll;
 }
 
 div.row {
     width: 100%;
     display: block;
     text-align: center;
+    overflow: scroll;
 }
 div.row div.col {
     width: 300px;
     display: inline-block;
+    overflow: scroll;
 }
 
 /* About Section CSS */
 section#about {
     padding: 75px 0;
     text-align: center;
+    overflow: scroll;
 }
 section#about p {
     width: 500px;
     display: inline-block;
     margin-bottom: 25px;
+    overflow: scroll;
 }
 section#about a {
     height: 55px;
@@ -328,15 +383,18 @@ section#about a {
     cursor: pointer;
     border: 1px solid #c7cbd4;
     transition: border-color 0.25s ease-in-out,color 0.25s ease-in-out;
+    overflow: scroll;
 }
 section#about a:hover{
     border-color: #2188ff;
     color: #2188ff;
+    overflow: scroll;
 }
 
 @media only screen and (max-width: 500px) {
     section#about p {
         width: 90%;
+        overflow: scroll;
     }
 }
 
@@ -349,58 +407,71 @@ section#template {
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+    overflow: scroll;
 }
 section#template h1.headerLine {
     color: white;
+    overflow: scroll;
 }
 section#template div.lineContainer div.line {
     background-color: white;
+    overflow: scroll;
 }
 section#template div.row {
     margin-top: 50px;
+    overflow: scroll;
 }
 section#template div.row div.col svg {
     height: 70px;
     width: 70px;
     padding: 5px;
+    overflow: scroll;
 }
 section#template div.row div.col svg path {
     fill: #2188ff;
     width: 100%;
     height: 100%;
+    overflow: scroll;
 }
 section#template div.row div.col h1, section#template div.row div.col p {
     color: white;
     font-size: 20px;
     font-weight: 200;
+    overflow: scroll;
 }
 section#template div.row div.col h1 {
     font-size: 40px;
     line-height: 80px;
     font-weight: 600;
+    overflow: scroll;
 }
 @media only screen and (max-width: 906px) {
     section#template div.row div.col {
         width: 270px;
+        overflow: scroll;
     }
 }
 @media only screen and (max-width: 816px) {
     section#template div.row div.col {
         width: 250px;
+        overflow: scroll;
     }
 }
 @media only screen and (max-width: 757px) {
     section#template div.lineContainer {
         margin-bottom: 50px;
+        overflow: scroll;
     }
     section#template div.row div.col {
         width: 100%;
         display: block;
         margin-top: 70px;
+        overflow: scroll;
     }
     section#template div.row div.col p {
         width: 250px;
         display: inline-block;
+        overflow: scroll;
     }
 }
 
@@ -408,11 +479,13 @@ section#template div.row div.col h1 {
 section#download {
     padding: 75px 0;
     text-align: center;
+    overflow: scroll;
 }
 section#download p {
     width: 500px;
     display: inline-block;
     margin-bottom: 25px;
+    overflow: scroll;
 }
 section#download a {
     height: 55px;
@@ -427,17 +500,21 @@ section#download a {
     background-color: #2188ff;
     transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
     margin-right: 10px;
+    overflow: scroll;
 }
 section#download a:hover {
     background-color: #2155ff;
     border-color: #2155ff;
+    overflow: scroll;
 }
 @media only screen and (max-width: 500px) {
     section#download p {
         width: 90%;
+        overflow: scroll;
     }
     section#download h1.headerLine {
         font-size: 32.5px;
+        overflow: scroll;
     }
 }
 
@@ -446,37 +523,45 @@ section#contact {
     padding: 75px 0;
     text-align: center;
     background-color: #f5f5f5;
+    overflow: scroll;
 }
 section#contact p.desc {
     width: 500px;
     display: inline-block;
     margin-bottom: 25px;
+    overflow: scroll;
 }
 
 section#contact ul {
     display: block;
     text-align: center;
+    overflow: scroll;
 }
 section#contact ul li {
     display: inline-block;
     margin: 0 25px;
     margin-top: 40px;
+    overflow: scroll;
 }
 section#contact ul li p,section#contact ul li svg {
     display: inline-block;
     line-height: 50px;
     font-size: 25px;
+    overflow: scroll;
 }
 section#contact ul li svg {
     width: 52.5px;
     height: 52.5px;
     margin-bottom: 5px;
+    overflow: scroll;
 }
 section#contact ul li svg path {
     fill: #414f57;
+    overflow: scroll;
 }
 section#contact ul li p {
     text-align: left;
+    overflow: scroll;
 }
 section#contact a {
     text-decoration: none;
@@ -484,15 +569,18 @@ section#contact a {
     transition: color 0.2s, border-color 0.2s;
     cursor: pointer;
     color: inherit;
+    overflow: scroll;
 }
 section#contact a:hover{
     border-color: #2188ff;
     color: #2188ff;
+    overflow: scroll;
 }
 
 @media only screen and (max-width: 500px) {
     section#contact p.desc {
         width: 90%;
+        overflow: scroll;
     }
 }
 
@@ -500,7 +588,7 @@ section#contact a:hover{
 footer {
     padding: 65px 0;
     text-align: center;
-    overflow: auto;
+    overflow: scroll;
 }
 footer p.copyright {
     font-size: 20px;
@@ -509,10 +597,11 @@ footer p.copyright {
     float: left;
     width: calc(100% - 10px);
     text-align: center;
+    overflow: scroll;
 }
 footer ul.links {
     text-align: center;
-    overflow: auto;
+    overflow: scroll;
     margin-bottom: 5px;
 }
 footer ul.links a {
@@ -521,15 +610,41 @@ footer ul.links a {
     width: 35px;
     padding: 7.5px 5px;
     display: inline-block;
+    overflow: scroll;
 }
 footer ul.links a svg {
     height: 100%;
     width: 100%;
+    overflow: scroll;
 }
 footer ul.links a svg path {
     fill: #c7cbd4;
     transition: fill 0.15s ease-in-out;
+    overflow: scroll;
 }
 footer ul.links a svg:hover path {
     fill: #414f57;
+    overflow: scroll;
+}
+
+div {
+    left-margin: 50px;
+    right-margin: 50px;
+    overflow: scroll;
+    justify-content: center;
+    text-align:center;
+}
+
+h2 {
+    text-align:center;
+}
+
+table {
+    left-margin: 50px;
+    right-margin: 50px;
+    text-align:center;
+    align-self: center;
+    background-color: white;
+    color: black;
+    border-collapse: collapse;
 }

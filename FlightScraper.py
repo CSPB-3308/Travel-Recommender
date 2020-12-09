@@ -7,20 +7,23 @@ import os
 # Source: https://towardsdatascience.com/if-you-like-to-travel-let-python-help-you-scrape-the-best-fares-5a1f26213086
 #         https://medium.com/@mikelcbrowne/running-chromedriver-with-python-selenium-on-heroku-acc1566d161c
 
-GOOGLE_CHROME_BIN = '/app/.apt/usr/bin/google-chrome'
-CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
-
-chrome_options = webdriver.ChromeOptions()
-chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-chrome_options.add_argument('--disable-gpu')
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('--disable-dev-shm-usage')
-driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+# GOOGLE_CHROME_BIN = '/app/.apt/usr/bin/google-chrome'
+# CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+#
+# chrome_options = webdriver.ChromeOptions()
+# chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+# chrome_options.add_argument('--disable-gpu')
+# chrome_options.add_argument('--no-sandbox')
+# chrome_options.add_argument('--headless')
+# chrome_options.add_argument('--disable-dev-shm-usage')
+# driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+# sleep(2)
+chromedriver_path = '/usr/local/bin/chromedriver' # Change this to your own chromedriver path!
+driver = webdriver.Chrome(executable_path=chromedriver_path)
 sleep(2)
 
 
-def start_kayak(city_from, city_to, date_start, date_end):
+def scrapeForFlights(city_from, city_to, date_start, date_end):
     """City codes - it's the IATA codes!
     Date format -  YYYY-MM-DD"""
 
@@ -37,11 +40,6 @@ def start_kayak(city_from, city_to, date_start, date_end):
     except:
         pass
 
-    df_flights_best = page_scrape(date_start, date_end)
-    return df_flights_best
-
-
-def page_scrape(date_outbound, date_inbound):
     # This function takes care of the scraping part
     xp_sections = '//*[@class="flights"]'
     price = '//*[@class="price option-text"]'
@@ -85,7 +83,7 @@ def page_scrape(date_outbound, date_inbound):
     for flights in outbound:
         if flights[2] == 'nonstop':
             # split accordingly
-            outbound_date.append(date_outbound)
+            outbound_date.append(date_start)
             outbound_time.append(flights[0])
             outbound_airline.append(flights[1])
             outbound_stops.append(flights[2])
@@ -93,7 +91,7 @@ def page_scrape(date_outbound, date_inbound):
             outbound_flight_duration.append(flights[3])
             outbound_route.append(flights[4] + flights[5] + flights[6])
         else:
-            outbound_date.append(date_outbound)
+            outbound_date.append(date_end)
             outbound_time.append(flights[0])
             outbound_airline.append(flights[1])
             outbound_stops.append(flights[2])
@@ -103,7 +101,7 @@ def page_scrape(date_outbound, date_inbound):
     for flights in inbound:
         if flights[2] == 'nonstop':
             # split accordingly
-            inbound_date.append(date_inbound)
+            inbound_date.append(date_start)
             inbound_time.append(flights[0])
             inbound_airline.append(flights[1])
             inbound_stops.append(flights[2])
@@ -111,7 +109,7 @@ def page_scrape(date_outbound, date_inbound):
             inbound_flight_duration.append(flights[3])
             inbound_route.append(flights[4] + flights[5] + flights[6])
         else:
-            inbound_date.append(date_inbound)
+            inbound_date.append(date_end)
             inbound_time.append(flights[0])
             inbound_airline.append(flights[1])
             inbound_stops.append(flights[2])
@@ -123,7 +121,7 @@ def page_scrape(date_outbound, date_inbound):
     flights_df['Outbound Day'] = outbound_date
     flights_df['Outbound Time'] = outbound_time
     flights_df['Outbound Route'] = outbound_route
-    flights_df['Outbound Airline'] =outbound_airline
+    flights_df['Outbound Airline'] = outbound_airline
     flights_df['Outbound Flight Duration'] = outbound_flight_duration
     flights_df['Outbound Number of Stops'] = outbound_stops
     flights_df['Outbound Stop Cities'] = outbound_stop_cities
@@ -135,36 +133,28 @@ def page_scrape(date_outbound, date_inbound):
     flights_df['Return Number of Stops'] = inbound_stops
     flights_df['Return Stop Cities'] = inbound_stop_cities
     flights_df['Price'] = parsed_prices
-    flights_df['Timestamp'] = strftime("%Y-%m-%d-%H:%M")  # so we can know when it was scraped
-    return flights_df
 
-
-def scrapeForFlights(city_from, city_to, date_start, date_end):
     # For when you want to accept input from command-line:
     # city_from = input('Where are you flying out of? Format must be city 2-letter state (in USA ex: Denver CO) or city 2-letter country (international ex: London UK) ')
     # city_to = input('Where are you visiting? Format must be city 2-letter state (in USA ex: Denver CO) or city 2-letter country (international ex: London UK) ')
     # date_start = input('What is your departure date? Please use YYYY-MM-DD format only, must leave on/after:' + str(date.today()) + ' ')
     # date_end = input('When is your return date? Please use YYYY-MM-DD format only, must checkout after check-in date ')
 
-    driver.implicitly_wait(10)
-    kayak = 'https://www.kayak.com/flights/LIS-SIN/2020-12-21/2020-12-25?sort=bestflight_a'
+    # driver.implicitly_wait(10)
+    # kayak = 'https://www.kayak.com/flights/LIS-SIN/2020-12-21/2020-12-25?sort=bestflight_a'
+    #
+    # driver.get(kayak)
+    # sleep(3)
+    #
+    # # Closing the popup
+    # try:
+    #     driver.implicitly_wait(10)
+    #     xp_popup_close = '//button[contains(@id,"dialog-close") and contains(@class,"Button-No-Standard-Style close ")]'
+    #     driver.find_elements_by_xpath(xp_popup_close)[-1].click()
+    # except:
+    #     pass
 
-    driver.get(kayak)
-    sleep(3)
-
-    # Closing the popup
-    try:
-        driver.implicitly_wait(10)
-        xp_popup_close = '//button[contains(@id,"dialog-close") and contains(@class,"Button-No-Standard-Style close ")]'
-        driver.find_elements_by_xpath(xp_popup_close)[-1].click()
-    except:
-        pass
-
-    df = start_kayak(city_from, city_to, date_start, date_end)
-    result = df.to_html()
-    text_file = open('flights.htm', "w")
-    text_file.write(result)
-    text_file.close()
+    result = flights_df.to_html(index=False)
     driver.close()
     driver.quit()
-
+    return result
