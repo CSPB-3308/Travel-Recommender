@@ -3,8 +3,8 @@
 
 # Team Members' names
 #### Becca Meares
-#### Bryan Arment
-#### Bryant Hicks
+#### Bryant Arment
+#### Bryan Hicks
 #### Jeff Dank
 
 # Project Tracker Link
