@@ -7,6 +7,10 @@
 #### Bryant Hicks
 #### Becca Meares
 
+# Resources
+#### https://towardsdatascience.com/if-you-like-to-travel-let-python-help-you-scrape-the-best-fares-5a1f26213086
+#### https://medium.com/@mikelcbrowne/running-chromedriver-with-python-selenium-on-heroku-acc1566d161c
+
 # Vision Statement
 #### Customers will be able to select cities they would like to travel to and learn a plethora of information and recommendations to help plan their trip. Recommendations will include restaurants, top rated attractions, cheapest flights, and upcoming events and entertainment.
 
