@@ -10,8 +10,9 @@
 # Resources
 #### https://towardsdatascience.com/if-you-like-to-travel-let-python-help-you-scrape-the-best-fares-5a1f26213086
 #### https://medium.com/@mikelcbrowne/running-chromedriver-with-python-selenium-on-heroku-acc1566d161c
-#### https://html5rocket.github.io/Carbon/ - HTML/CSS base for site design
-#### https://stock.adobe.com/search/free?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bfree_collection%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=airplane+cloudscape&order=relevance&safe_search=1&search_page=1&search_type=autosuggest&acp=2&aco=airplane+cloud&get_facets=1&asset_id=179204012 - Plane photo asset
+#### HTML/CSS base for site design: https://html5rocket.github.io/Carbon/ 
+#### Plane photo asset:
+https://stock.adobe.com/search/free?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bfree_collection%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=airplane+cloudscape&order=relevance&safe_search=1&search_page=1&search_type=autosuggest&acp=2&aco=airplane+cloud&get_facets=1&asset_id=179204012 
 #### Try Django Tutorial Series by CodingEntrepreneurs Link:https://www.youtube.com/watch?v=yDv5FIAeyoY
 
 # Vision Statement
