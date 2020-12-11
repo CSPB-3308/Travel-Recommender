@@ -11,7 +11,7 @@
 #### https://github.com/CSPB-3308/Travel-Recommender/projects/1
 
 # Link to Project Demo
-### Add Youtube Link HERE
+### https://www.youtube.com/watch?v=qAWyjjnkoQc&feature=youtu.be
 
 # Link to Github Repository
 #### https://github.com/CSPB-3308/Travel-Recommender/edit/master/README.md
