@@ -15,6 +15,7 @@
 https://stock.adobe.com/search/free?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bfree_collection%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=airplane+cloudscape&order=relevance&safe_search=1&search_page=1&search_type=autosuggest&acp=2&aco=airplane+cloud&get_facets=1&asset_id=179204012 
 #### Try Django Tutorial Series by CodingEntrepreneurs Link:https://www.youtube.com/watch?v=yDv5FIAeyoY
 #### Heroku Link To Deployed Branch: https://echo-travel-recommender.herokuapp.com/
+#### Image credits: see image_credits.txt
 
 # Vision Statement
 #### Customers will be able to select cities they would like to travel to and learn a plethora of information and recommendations to help plan their trip. Recommendations will include restaurants, top rated attractions, cheapest flights, and upcoming events and entertainment.
